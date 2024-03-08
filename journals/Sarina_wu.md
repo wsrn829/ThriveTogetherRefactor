@@ -68,3 +68,26 @@ Pair-worked with Clarisse and added data models (schemas) to ReadMe, referring t
 ## 07/27/2023
 
 Had our project presented to the instructor (Zach) today. Made changes and fixed all bugs according to his feedback (with protected endpoints being a crucial part among others), which was awesome!! A huge relief.
+
+---
+
+## 03/07/2024
+
+I plan to deploy and refactor this app and the below is what I did today.
+
+- Deployed frontend on Netlify.
+- Set up SQLAlchemy and refactor database schema.
+- Prepare for deploying backend on Heroku.
+
+### SQLAlchemy and FastAPI's Pydantic work well together to build robust and efficient APIs.
+
+- SQLAlchemy: SQLAlchemy is a SQL toolkit and Object-Relational Mapping (ORM) system for Python. It provides a full suite of well-known enterprise-level persistence patterns, designed for efficient and high-performing database access.
+
+- Pydantic: Pydantic is a data validation library that uses Python type annotations to validate that data structures (like JSON) match the expected format. It's integrated with FastAPI to provide data validation, serialization, and documentation for your API endpoints.
+
+### Example
+
+- We define a SQLAlchemy model User and a Pydantic model UserBase.
+- When we create a new user in the create_user route, FastAPI uses Pydantic to validate the request data, and SQLAlchemy to save it to the database.
+
+However, it's important to note that Base.metadata.create_all(engine) will only create tables that don't already exist. If a table already exists in your database with the same name as one of your models, create_all will not modify it. If you need to modify an existing table (for example, to add a new column), you'll need to use a database migration tool like Alembic.
