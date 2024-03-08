@@ -1,7 +1,8 @@
+from sqlalchemy import Boolean, DateTime, Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
 
 
 engine = create_engine('postgresql://user:password@localhost/dbname')
@@ -9,7 +10,6 @@ Session = sessionmaker(bind=engine)
 
 
 Base = declarative_base()
-
 
 
 class Users(Base):
@@ -29,12 +29,16 @@ class Users(Base):
     about_me = Column(String(5000))
     my_story = Column(String(5000))
 
+    # Relationship to Peers
+    peers = relationship("Peers", back_populates="user")
+    user_tags = relationship('UserTags', back_populates='user')
 
-class Peer(Base):
+
+class Peers(Base):
     __tablename__ = 'peers'
 
     id = Column(Integer, primary_key=True, nullable=False)
-    user_id = Column(Integer, nullable=False)
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     peer_id = Column(Integer, nullable=False)
     peer_name = Column(String, nullable=False)
     profile_link = Column(String)
@@ -42,29 +46,41 @@ class Peer(Base):
     profile_image = Column(String)
     status = Column(Integer, nullable=False)
 
+    # Relationship to Users
+    user = relationship("Users", back_populates="peers")
 
-class PeerConnections(Base):
-    __tablename__ = 'peer_connections'
+
+class PeerRequests(Base):
+    __tablename__ = 'peer_requests'
 
     id = Column(Integer, primary_key=True, nullable=False)
-    sender = Column(Integer, nullable=False)
-    recipient = Column(Integer, nullable=False)
+    sender = Column(Integer, ForeignKey('users.id'), nullable=False)
+    recipient = Column(Integer, ForeignKey('users.id'), nullable=False)
     status = Column(String, nullable=False)
     has_messaged = Column(Boolean)
     sender_name = Column(String, nullable=False)
     recipient_name = Column(String, nullable=False)
+
+    # Relationships
+    sender_user = relationship('Users', foreign_keys=[sender])
+    recipient_user = relationship('Users', foreign_keys=[recipient])
 
 
 class Messages(Base):
     __tablename__ = 'messages'
 
     id = Column(Integer, primary_key=True, nullable=False)
-    recipient = Column(Integer, nullable=False)
-    sender = Column(Integer, nullable=False)
+    recipient = Column(Integer, ForeignKey('users.id'), nullable=False)
+    sender = Column(Integer, ForeignKey('users.id'), nullable=False)
     date = Column(DateTime, nullable=False)
-    content = Column(String)
+    content = Column(String, nullable=False)
     is_read = Column(Boolean)
     user_id = Column(Integer)
+
+    # Relationships
+    sender_user = relationship('Users', foreign_keys=[sender])
+    recipient_user = relationship('Users', foreign_keys=[recipient])
+    user = relationship('Users', foreign_keys=[user_id])
 
 
 class Tags(Base):
@@ -73,12 +89,21 @@ class Tags(Base):
     id = Column(Integer, primary_key=True, nullable=False)
     tag = Column(String, nullable=False, unique=True)
 
+    # Relationships
+    user_tags = relationship('UserTags', back_populates='tag')
+
+
 
 class UserTags(Base):
     __tablename__ = 'user_tags'
 
     id = Column(Integer, primary_key=True, nullable=False)
-    user_id = Column(Integer, nullable=False)
-    tag_id = Column(Integer, nullable=False)
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    tag_id = Column(Integer, ForeignKey('tags.id'), nullable=False)
+
+    # Relationships
+    user = relationship('Users', back_populates='user_tags')
+    tag = relationship('Tags', back_populates='user_tags')
+
 
 Base.metadata.create_all(engine)
