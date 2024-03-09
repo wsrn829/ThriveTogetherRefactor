@@ -7,7 +7,7 @@ Set up Docker and pgAdmin in preparation for the database creation.
 Added and migrated the following tables: 004_user_tags table, 005_messages table, 006_peer_connections table.
 They all successfully showed up in pgAdmin.
 
-Also created my Sarina_Wu.md journal file.
+Also created my Sarina_wu.md journal file.
 
 ## 07/10/2023
 
@@ -73,11 +73,12 @@ Had our project presented to the instructor (Zach) today. Made changes and fixed
 
 ## 03/07/2024
 
-I plan to deploy and refactor this app and the below is what I did today.
+I plan to deploy and refactor this app and below is what I did today.
 
 - Deployed frontend on Netlify.
-- Set up SQLAlchemy and refactor database schema.
-- Prepare for deploying backend on Heroku.
+- Set up SQLAlchemy and Alembic.
+- Refactored database schema by changing names, adding ForeignKeys and relationships.
+- Prepared for deploying backend on Heroku by setting up deployment environment and changing file structure.
 
 ### SQLAlchemy and FastAPI's Pydantic work well together to build robust and efficient APIs.
 
@@ -91,3 +92,11 @@ I plan to deploy and refactor this app and the below is what I did today.
 - When we create a new user in the create_user route, FastAPI uses Pydantic to validate the request data, and SQLAlchemy to save it to the database.
 
 However, it's important to note that Base.metadata.create_all(engine) will only create tables that don't already exist. If a table already exists in your database with the same name as one of your models, create_all will not modify it. If you need to modify an existing table (for example, to add a new column), you'll need to use a database migration tool like Alembic.
+
+## 03/08/2024
+
+1. Fixed backend code based on altered table schemas.
+
+- The class names for Pydantic models do not need to match the class names for SQLAlchemy models. Pydantic and SQLAlchemy serve different purposes. SQLAlchemy is an ORM for interacting with your database, so its models represent tables in the database. Pydantic, however, is a data validation library, so its models are used to validate the shape and content of the data.
+
+- But the field names in the Pydantic models should correspond to the column names in your SQLAlchemy models. This is because Pydantic models are often used to parse and validate HTTP request data before it's used to create or update SQLAlchemy model instances. If the field names didn't match, you wouldn't be able to directly use the validated data from the Pydantic model to interact with the SQLAlchemy model.

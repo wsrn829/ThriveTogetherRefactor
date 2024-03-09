@@ -4,7 +4,6 @@ from psycopg_pool import ConnectionPool
 
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
-
 class TagQueries:
     def get_all_tags(self) -> AllTagsOut:
         with pool.connection() as conn:
@@ -14,7 +13,6 @@ class TagQueries:
                     SELECT id, tag FROM tags
                     """
                 )
-
                 tags = []
                 rows = cur.fetchall()
                 for row in rows:
@@ -34,7 +32,6 @@ class TagQueries:
                     """,
                     [username],
                 )
-
                 tags = []
                 rows = cur.fetchall()
                 for row in rows:
@@ -90,7 +87,6 @@ class TagQueries:
                     """,
                     params,
                 )
-
                 record = None
                 row = cur.fetchone()
                 if row is not None:
