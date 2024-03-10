@@ -1,11 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from api.authenticator import authenticator
-from messages.routers.messages import messages_router
-from accounts.routers import accounts
-from peers.routers import peers
-from matching.routers import matching
-from tags.routers import tags
+from api.messages.routers.messages import messages_router
+from api.accounts.routers import accounts
+from api.peers.routers import peers
+from api.matching.routers import matching
+from api.tags.routers import tags
 import os
 
 app = FastAPI()
