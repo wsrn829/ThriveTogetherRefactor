@@ -7,7 +7,7 @@ MarkupSafe==2.1.5
 six==1.15.0
 SQLAlchemy==2.0.28
 typing_extensions==4.10.0
-PyYAML==5.4.1
+PyYAML==5.4.1 --global-option="--without-libyaml"
 anyio==3.7.1
 asgiref==3.7.2
 bcrypt==4.0.1
