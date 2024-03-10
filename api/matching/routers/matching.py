@@ -5,7 +5,7 @@ from fastapi import (
 )
 from ..models import MatchesOut, HttpError
 from ..queries.matching import MatchQueries
-from authenticator import authenticator
+from api.authenticator import authenticator
 
 
 router = APIRouter()
