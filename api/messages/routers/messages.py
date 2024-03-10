@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, Response
 from typing import List
-from authenticator import authenticator
+from api.authenticator import authenticator
 from .. queries.messages import MessageQueries
 from .. models import MessageOut, MessageIn
 

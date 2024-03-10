@@ -1,8 +1,8 @@
 from fastapi.testclient import TestClient
-from main import app
-from peers.queries.peers import PeerQueries
+from api.main import app
+from api.peers.queries.peers import PeerQueries
 from pydantic import BaseModel
-from authenticator import authenticator
+from api.authenticator import authenticator
 
 
 client = TestClient(app)

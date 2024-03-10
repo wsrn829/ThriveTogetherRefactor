@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
-from main import app
-from tags.queries.tags import TagQueries
+from api.main import app
+from api.tags.queries.tags import TagQueries
 
 client = TestClient(app)
 
