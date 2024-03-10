@@ -4,7 +4,6 @@ Thrive Together is your go-to app that creates a safe space for people experienc
 
 Thrive Together - connecting like-minded folks.
 
-You can visit the site here: https://mindful-codesquad.gitlab.io/thrive-together/
 
 ## Developed by:
 
