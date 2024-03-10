@@ -108,3 +108,13 @@ Fixed all backend code based on altered table schemas.
 2. Updated App.js (like routes).
 
 3. Updated styling, including adding Mobile.css.
+
+4. Backend is deployed on Heroku after troubleshooting.
+
+## 03/10/2024 (To do)
+
+1. Continue debugging
+
+2. Reimplement authentication
+
+3. Check functionalities
