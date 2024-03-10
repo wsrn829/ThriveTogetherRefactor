@@ -1,4 +1,4 @@
-python==3.12.2
+python==3.10.2
 anyio==3.7.1
 asgiref==3.7.2
 bcrypt==4.0.1
