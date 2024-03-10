@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from authenticator import authenticator
+from api.authenticator import authenticator
 from messages.routers.messages import messages_router
 from accounts.routers import accounts
 from peers.routers import peers
