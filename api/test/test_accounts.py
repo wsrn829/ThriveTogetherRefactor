@@ -1,8 +1,8 @@
 from fastapi.testclient import TestClient
-from main import app
-from accounts.queries.accounts import AccountQueries
+from api.main import app
+from api.accounts.queries.accounts import AccountQueries
 from pydantic import BaseModel
-from authenticator import authenticator
+from api.authenticator import authenticator
 
 
 client = TestClient(app)

@@ -1,8 +1,9 @@
 from fastapi.testclient import TestClient
-from main import app
-from peers.routers.peers import PeerConnectionQueries
-from authenticator import authenticator
+from api.main import app
+from api.peers.routers.peers import PeerConnectionQueries
+from api.authenticator import authenticator
 from pydantic import BaseModel
+
 client = TestClient(app)
 
 

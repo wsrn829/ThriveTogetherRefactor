@@ -3,7 +3,7 @@ from typing import List
 
 from ..models import Peer
 from ..queries.peers import PeerQueries
-from authenticator import authenticator
+from api.authenticator import authenticator
 
 router = APIRouter()
 

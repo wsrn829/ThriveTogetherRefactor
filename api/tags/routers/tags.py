@@ -5,7 +5,7 @@ from fastapi import (
 )
 from ..models import Tag, TagsOut, HttpError, AllTagsOut, SuccessMessage
 from ..queries.tags import TagQueries
-from authenticator import authenticator
+from api.authenticator import authenticator
 
 router = APIRouter()
 

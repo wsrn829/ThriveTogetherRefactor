@@ -3,9 +3,9 @@ from pydantic import BaseModel
 from datetime import datetime
 from typing import Optional
 from fastapi.testclient import TestClient
-from main import app
-from messages.queries.messages import MessageQueries
-from authenticator import authenticator
+from api.main import app
+from api.messages.queries.messages import MessageQueries
+from api.authenticator import authenticator
 
 
 @pytest.fixture
