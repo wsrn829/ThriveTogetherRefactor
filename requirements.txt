@@ -8,3 +8,4 @@ six @ file:///AppleInternal/Library/BuildRoots/9dd5efe2-7fad-11ee-b588-aa530c46a
 SQLAlchemy==2.0.28
 typing_extensions==4.10.0
 PyYAML==5.4.1
+altgraph==0.17.2
