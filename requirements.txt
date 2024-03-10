@@ -7,3 +7,4 @@ MarkupSafe==2.1.5
 six @ file:///AppleInternal/Library/BuildRoots/9dd5efe2-7fad-11ee-b588-aa530c46a9ea/Library/Caches/com.apple.xbs/Sources/python3/six-1.15.0-py2.py3-none-any.whl
 SQLAlchemy==2.0.28
 typing_extensions==4.10.0
+PyYAML==5.4.1
