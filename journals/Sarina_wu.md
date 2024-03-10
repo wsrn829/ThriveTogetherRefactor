@@ -95,16 +95,16 @@ However, it's important to note that Base.metadata.create_all(engine) will only 
 
 ## 03/08/2024
 
-1. Fixed backend code based on altered table schemas.
+Fixed all backend code based on altered table schemas.
 
 - The class names for Pydantic models do not need to match the class names for SQLAlchemy models. Pydantic and SQLAlchemy serve different purposes. SQLAlchemy is an ORM for interacting with your database, so its models represent tables in the database. Pydantic, however, is a data validation library, so its models are used to validate the shape and content of the data.
 
 - But the field names in the Pydantic models should correspond to the column names in your SQLAlchemy models. This is because Pydantic models are often used to parse and validate HTTP request data before it's used to create or update SQLAlchemy model instances. If the field names didn't match, you wouldn't be able to directly use the validated data from the Pydantic model to interact with the SQLAlchemy model.
 
-## 08/09/2024
+## 03/09/2024
 
 1. Rewrote PeerRequestList.js.
 
-2. Updated App.js routes.
+2. Updated App.js (like routes).
 
 3. Updated styling, including adding Mobile.css.
