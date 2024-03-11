@@ -1,11 +1,10 @@
-import useToken from "@galvanize-inc/jwtdown-for-react";
+import useToken from "./useToken";
 import { useState } from "react";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useToken();
-  const { token } = useToken();
+  const { login, token } = useToken();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,8 +14,8 @@ const LoginForm = () => {
 
   return (
     <div className="content-container bg-text rounded-edges d-flex justify-content-center">
-      {!token &&
-        <form onSubmit={(e) => handleSubmit(e)} style={{width: "750px"}}>
+      {!token && (
+        <form onSubmit={(e) => handleSubmit(e)} style={{ width: "750px" }}>
           <div className="mb-3">
             <label className="form-label">Username:</label>
             <input
@@ -39,12 +38,12 @@ const LoginForm = () => {
             <input className="btn btn-primary" type="submit" value="Login" />
           </div>
         </form>
-      }
-      {token &&
+      )}
+      {token && (
         <div>
           <h3>Already logged in!</h3>
         </div>
-      }
+      )}
     </div>
   );
 };

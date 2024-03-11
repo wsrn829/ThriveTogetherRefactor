@@ -8,7 +8,7 @@ import AccountInfo from "./AccountInfo.js";
 import EditTags from "./EditTags.js";
 import Nav from "./Nav.js";
 import "./App.css";
-import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
+import { AuthProvider } from "./AuthContext";
 import AccountUpdate from "./AccountUpdate.js";
 import MatchView from "./MatchView.js";
 import InboxPage from "./Messages/InboxPage.js";
@@ -37,11 +37,11 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter basename={basename}>
-      <AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
+    <AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
+      <BrowserRouter basename={basename}>
         <MainApp />
-      </AuthProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

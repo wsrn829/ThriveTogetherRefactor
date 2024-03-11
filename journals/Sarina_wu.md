@@ -109,12 +109,22 @@ Fixed all backend code based on altered table schemas.
 
 3. Updated styling, including adding Mobile.css.
 
-4. Backend is deployed on Heroku after troubleshooting.
+4. Backend is deployed on Heroku after lots of troubleshooting.
 
 ## 03/10/2024 (To do)
 
-1. Continue debugging
+1. Tried to replace original authentication with more popular SSO. I tried to use a custom one, but later decided to implement Auth0. Will continue trying.
 
-2. Reimplement authentication
+Single Sign-On (SSO) authentication can be complex due to the various protocols and security considerations involved. However, there are several libraries and services that can simplify the process. Here are a few options:
 
-3. Check functionalities
+- Auth0: Auth0 is a flexible, drop-in solution to add authentication and authorization services to your applications. It supports SSO and offers a generous free tier.
+
+- Okta: Okta is another service that provides SSO and user management. It has SDKs for various languages and frameworks.
+
+- Firebase Authentication: Firebase Authentication supports SSO and integrates well with other Firebase services. It's a good option if you're already using Firebase for your application.
+
+- Passport.js: If you're working with Node.js, Passport.js is a popular middleware that can be used to implement SSO. It supports a wide range of strategies, including OAuth, OpenID, and SAML.
+
+- Spring Security: For Java applications, Spring Security provides comprehensive security services, including SSO.
+
+Implementing SSO involves changes on both the frontend (to handle the SSO process and store the user's token) and the backend (to verify the token and secure endpoints). Make sure to follow the guides closely and test thoroughly to ensure your implementation is secure.

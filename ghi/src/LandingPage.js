@@ -34,12 +34,12 @@ const LandingPage = () => (
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0 justify-content-end">
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/signup">
+                  <NavLink className="nav-link d-block" to="/signup">
                     Sign Up
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/login">
+                  <NavLink className="nav-link d-block" to="/login">
                     Login
                   </NavLink>
                 </li>

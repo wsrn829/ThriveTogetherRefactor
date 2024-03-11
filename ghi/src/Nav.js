@@ -1,18 +1,21 @@
 import logo from "./images/thrivetogether2.png";
-import useToken from "@galvanize-inc/jwtdown-for-react";
+import useToken from "./useToken";
 import { NavLink, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function Nav() {
   const [userData, setUserData] = useState({});
-  const { logout } = useToken();
-  const { token } = useToken();
+  const { logout, token } = useToken();
 
   useEffect(() => {
     async function getUserData() {
       let url = `${process.env.REACT_APP_API_HOST}/token`;
       let response = await fetch(url, {
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       });
       let data = await response.json();
 
