@@ -1,20 +1,14 @@
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
-<<<<<<< HEAD
 from fastapi.security import OAuth2PasswordBearer
 from jose import jwt, JWTError
-=======
->>>>>>> heroku/main
 from api.authenticator import authenticator
 from api.messages.routers.messages import messages_router
 from api.accounts.routers import accounts
 from api.peers.routers import peers
 from api.matching.routers import matching
 from api.tags.routers import tags
-<<<<<<< HEAD
 import httpx
-=======
->>>>>>> heroku/main
 import os
 
 app = FastAPI()
@@ -58,6 +52,7 @@ app.add_middleware(
     allow_origins=[
         os.environ.get("CORS_HOST", "http://localhost:3000"),
         "http://localhost:3000",
+        "https://thrivetogether.netlify.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
