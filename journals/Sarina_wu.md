@@ -111,9 +111,11 @@ Fixed all backend code based on altered table schemas.
 
 4. Backend is deployed on Heroku after lots of troubleshooting.
 
-## 03/10/2024 (To do)
+## 03/10/2024
 
 1. Tried to replace original authentication with more popular SSO. I tried to use a custom one, but later decided to implement Auth0. Will continue trying.
+
+2. Heroku was somehow down tonight.
 
 Single Sign-On (SSO) authentication can be complex due to the various protocols and security considerations involved. However, there are several libraries and services that can simplify the process. Here are a few options:
 
@@ -128,3 +130,7 @@ Single Sign-On (SSO) authentication can be complex due to the various protocols 
 - Spring Security: For Java applications, Spring Security provides comprehensive security services, including SSO.
 
 Implementing SSO involves changes on both the frontend (to handle the SSO process and store the user's token) and the backend (to verify the token and secure endpoints). Make sure to follow the guides closely and test thoroughly to ensure your implementation is secure.
+
+## 03/11/2024
+
+Docker containers are finally up and running again...debugging has focused on the fastapi container and database config and connection, using alembic and SQLAlchemy for the first time.
