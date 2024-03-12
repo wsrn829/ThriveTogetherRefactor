@@ -26,17 +26,17 @@ services:
       - 15432:5432
   fastapi:
     environment:
-      DATABASE_URL: postgresql://example_user:secret@thrive-together-postgres-1/postgres-data
+      DATABASE_URL: ${DATABASE_URL}
       CORS_HOST: http://localhost:3000
       SIGNING_KEY: ${SIGNING_KEY}
       PYTHONDONTWRITEBYTECODE: 1
     build:
-      context: api
-      dockerfile: Dockerfile.dev
+      context: .
+      dockerfile: api/Dockerfile.dev
     ports:
       - 8000:8000
     volumes:
-      - ./api:/app
+      - .:/app
 
   ghi:
     image: node:lts-bullseye
