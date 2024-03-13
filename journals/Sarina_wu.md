@@ -133,4 +133,14 @@ Implementing SSO involves changes on both the frontend (to handle the SSO proces
 
 ## 03/11/2024
 
-Docker containers are finally up and running again...debugging has focused on the fastapi container and database config and connection, using alembic and SQLAlchemy for the first time.
+- Docker containers are finally up and running again.  
+
+- Debugging has focused on the fastapi container and database config and connection.
+
+- Used alembic and SQLAlchemy for the first time.
+
+## 03/12/2024
+
+- Read Authentication documentation today. Sometimes, I really miss my cohort mates. Wish it was a little bit longer.
+
+  
