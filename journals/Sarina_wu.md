@@ -143,4 +143,7 @@ Implementing SSO involves changes on both the frontend (to handle the SSO proces
 
 - Read Authentication documentation today. Sometimes, I really miss my cohort mates. Wish it was a little bit longer.
 
-  
+## 03/13/2024
+
+- Based on my one-on-one with instructors before graduation, CI/CD and Redux are absolute priorities for job search in industry but auth is not. I need a bit more motivation to do stuff especially when things are not super straightforward.
+
