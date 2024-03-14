@@ -147,3 +147,8 @@ Implementing SSO involves changes on both the frontend (to handle the SSO proces
 
 - Based on my one-on-one with instructors before graduation, CI/CD and Redux are absolute priorities for job search in industry but auth is not. I need a bit more motivation to do stuff especially when things are not super straightforward.
 
+## 03/14/2024
+
+- Still need to do it because all our endpoints are protected. I've already redeployed the backend on Heroku and the frontend on Netlify, and neither is throwing any errors, nor is Docker. But I cannot test or debug the full functionality without login. It wasn't working in December, but it could be due to deployment issues. The original deployment stopped working after three months, which is why we have to redeploy it. But I'm not sure about the authentication. So I'll probably try that first. I need this project on my resume because it's my most complex project so far, and our team built it from scratch without following any tutorials. (We even voted for our project ideas, and this one was the 'winner'.)
+
+- Only good thing so far is I can deploy projects real quick now. Can't believe I spent months last year lol.
