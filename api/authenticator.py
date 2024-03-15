@@ -1,6 +1,8 @@
 import os
 from fastapi import Depends
 from jwtdown_fastapi.authentication import Authenticator
+from datetime import timedelta
+
 from api.accounts.queries.accounts import AccountQueries
 from api.accounts.models import AccountOut, AccountOutWithPassword
 
@@ -32,5 +34,9 @@ class MyAuthenticator(Authenticator):
         # You must return TWO values from this method.
         return account.username, AccountOut(**account.dict())
 
+two_hours = timedelta(hours=2)
 
-authenticator = MyAuthenticator(os.environ["SIGNING_KEY"])
+authenticator = MyAuthenticator(
+    os.environ["SIGNING_KEY"],
+    exp=two_hours,
+)

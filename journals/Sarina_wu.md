@@ -133,7 +133,7 @@ Implementing SSO involves changes on both the frontend (to handle the SSO proces
 
 ## 03/11/2024
 
-- Docker containers are finally up and running again.  
+- Docker containers are finally up and running again.
 
 - Debugging has focused on the fastapi container and database config and connection.
 
@@ -151,7 +151,7 @@ Implementing SSO involves changes on both the frontend (to handle the SSO proces
 
 - Still need to do it because all our endpoints are protected. I've already redeployed the backend on Heroku and the frontend on Netlify, and neither is throwing any error, nor is Docker. But I cannot test or debug the full functionality without login. It wasn't working in December, but it could be due to deployment issues. The original deployment stopped working after three months, which is why we have to redeploy it. But I'm not sure about the authentication. So I'll probably try that first.
 
-- I need this project on my resume because it's my most complex project so far, and our team built it from scratch without following any tutorials. (We even voted for our project ideas, and this one was the 'winner'.) 
+- I need this project on my resume because it's my most complex project so far, and our team built it from scratch without following any tutorials. (We even voted for our project ideas, and this one was the 'winner'.)
 
 - The only good thing so far is I can deploy projects real quick now. Can't believe I spent months last year lol.
 
@@ -159,4 +159,4 @@ Implementing SSO involves changes on both the frontend (to handle the SSO proces
 
 - Relocated to a neighboring city last month, and found many of my neighbors are software engineers. One of them mentioned that the current job market is a result of overhiring during Covid and high interest rates right now. He thinks AI is a minor factor because they are not smart enough. Should I still focus on AI projects then? (Am I too goal-oriented? Is it good?)
 
-- Once I start applying, I start getting either online coding assessments/interviews, and no offer for full-time positions after several rounds of screening. This was the case last year. If my projects etc are not strong enough, getting responses (which is already pretty hard in this market) is not exciting anymore (although I could still practice my interview skills, considering the time spent on preparing for a specific position, I'm not sure). But I'm still applying. Still haven't considered contract jobs yet. I'd need to put back this project on my resume anyway.  
+- Once I start applying, I start getting either online coding assessments/interviews, and no offer for full-time positions after several rounds of screening. This was the case last year. If my projects etc are not strong enough, getting responses (which is already pretty hard in this market) is not exciting anymore (although I could still practice my interview skills, considering the time spent on preparing for a specific position, I'm not sure). But I'm still applying. Still haven't considered contract jobs yet. I'd need to put back this project on my resume anyway.
