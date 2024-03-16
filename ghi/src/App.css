@@ -180,11 +180,19 @@ div.collapsing {
 }
 
 .main-content {
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  width: 75%;
+  padding: 25px;
+}
+
+.landing-page-content {
   margin-left: 4%;
   /* margin-right: 15%; */
   margin-top: 1.7em;
   /* margin-bottom: 0px; */
-  width: 95%;
+  width: 100%;
   padding: 0px;
 }
 

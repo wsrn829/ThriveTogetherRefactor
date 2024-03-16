@@ -6,7 +6,7 @@ import "./Mobile.css";
 
 const LandingPage = () => (
   <>
-    <main className="main-content">
+    <main className="landing-page-content">
       <div className="tagline">
         <h1 className="content-container rounded-edges d-flex justify-content-center">
           Thrive Together
