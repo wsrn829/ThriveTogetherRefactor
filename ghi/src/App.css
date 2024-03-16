@@ -87,7 +87,7 @@ main {
   z-index: 1;
 }
 
-.nav-container.landing-nav .container-fluid {
+.nav-container .container-fluid {
   justify-content: flex-end;
 }
 
@@ -180,11 +180,12 @@ div.collapsing {
 }
 
 .main-content {
-  margin: auto;
-  margin-top: 25px;
-  margin-bottom: 25px;
-  width: 75%;
-  padding: 25px;
+  margin-left: 4%;
+  /* margin-right: 15%; */
+  margin-top: 1.7em;
+  /* margin-bottom: 0px; */
+  width: 95%;
+  padding: 0px;
 }
 
 .id-tag {
