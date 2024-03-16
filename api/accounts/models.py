@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic import BaseModel
 
 
@@ -19,11 +21,11 @@ class AccountOut(BaseModel):
     gender: str
     pronouns: str
     email: str
-    profile_image: str | None
-    banner_image: str | None
-    about_me: str | None
-    my_story: str | None
-    preferences: str | None
+    profile_image: Optional[str]
+    banner_image: Optional[str]
+    about_me: Optional[str]
+    my_story: Optional[str]
+    preferences: Optional[str]
 
 
 class AccountOutWithPassword(AccountOut):

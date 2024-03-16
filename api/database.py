@@ -12,7 +12,7 @@ database_url = os.getenv('DATABASE_URL')
 engine = create_engine(
     os.environ["DATABASE_URL"],
     poolclass=QueuePool,
-    pool_size=10,  # Maximum number of connections
+    pool_size=5,  # Maximum number of connections
 )
 
 Session = sessionmaker(bind=engine)
