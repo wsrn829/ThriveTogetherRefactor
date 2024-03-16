@@ -46,17 +46,13 @@ function App() {
 }
 
 function MainApp() {
-  const location = useLocation();
-
   return (
     <div>
       <div className="grid">
-        <Routes>
-          <Route exact path="/" element={<LandingPage />}></Route>
-        </Routes>
-        {location.pathname !== "/" && <Nav />}
+        <Nav />
         <main className="main-content">
           <Routes>
+            <Route exact path="/" element={<LandingPage />}></Route>
             <Route exact path="/login" element={<LoginForm />}></Route>
             <Route exact path="/signup" element={<AccountForm />}></Route>
             <Route exact path="/inbox" element={<InboxPage />}></Route>

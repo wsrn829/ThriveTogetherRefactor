@@ -160,3 +160,7 @@ Implementing SSO involves changes on both the frontend (to handle the SSO proces
 - Relocated to a neighboring city last month, and found many of my neighbors are software engineers. One of them mentioned that the current job market is a result of overhiring during Covid and high interest rates right now. He thinks AI is a minor factor because they are not smart enough. Should I still focus on AI projects then? (Am I too goal-oriented? Is it good?)
 
 - Once I start applying, I start getting either online coding assessments/interviews, and no offer for full-time positions after several rounds of screening. This was the case last year. If my projects etc are not strong enough, getting responses (which is already pretty hard in this market) is not exciting anymore (although I could still practice my interview skills, considering the time spent on preparing for a specific position, I'm not sure). But I'm still applying. Still haven't considered contract jobs yet. I'd need to put back this project on my resume anyway.
+
+## 03/16/2024
+
+- Finally fixed the landing page buttons, which sometimes worked and sometime didn't on my end. Also worked on styling a little bit.

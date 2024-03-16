@@ -1,5 +1,5 @@
 import logo from "./images/thrivetogether2.png";
-import useToken from "./useToken";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 import { NavLink, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -32,19 +32,21 @@ function Nav() {
   return (
     <>
       <div className="logo-container circle bg-darkblue">
-        <img
-          src={logo}
-          alt="Logo"
-          className="d-inline-block align-text-top logo circle"
-        />
+        <Link to="/">
+          <img
+            src={logo}
+            alt="Logo"
+            className="d-inline-block align-text-top logo circle"
+          />
+        </Link>
       </div>
       <header className="bg-darkblue">
         <div className="nav-container">
           <nav className="navbar nav navbar-expand-lg">
             <div className="container-fluid">
-              <NavLink className="navbar-brand" to="/">
+              <Link className="navbar-brand" to="/">
                 Thrive Together
-              </NavLink>
+              </Link>
               <button
                 className="navbar-toggler"
                 type="button"
@@ -97,22 +99,22 @@ function Nav() {
         <div className="vertical-nav bg-midblue dark-text">
           <ul>
             <li>
-              <Link to="/info">View Profile</Link>
+              <Link to="/info">Profile</Link>
             </li>
             <li>
-              <Link to="/inbox">Inbox</Link>
+              <Link to="/inbox">Messages</Link>
             </li>
             <li>
               <Link to="/matches">Matches</Link>
             </li>
             <li>
-              <Link to="/tags">Edit Tags</Link>
+              <Link to="/tags">Tags</Link>
             </li>
             <li>
               <Link to="/peers">Peers</Link>
             </li>
             <li>
-              <Link to="/requests">Peer Requests</Link>
+              <Link to="/requests">Requests</Link>
             </li>
           </ul>
         </div>

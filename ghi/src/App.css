@@ -58,7 +58,7 @@ main {
   height: 150px;
   padding: 15px;
   position: fixed;
-  z-index: 2;
+  z-index: 1;
 }
 
 .bg-darkblue {
@@ -93,29 +93,38 @@ main {
 
 .navbar-brand {
   color: rgb(15, 1, 15);
-  font-size: 1.5em;
-  padding: 10px 15px;
-  /* background-color: #b3cc8b; */
+  font-size: 1.3em;
+  padding: 0.5em 1em;
   background-color: rgb(194, 194, 250);
-  border-radius: 28px;
+  border-radius: 2em;
   font-weight: bold;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand:hover {
+  background-color: rgb(144, 144, 220);
 }
 
 .nav-link {
   font-weight: bold;
   color: rgb(15, 1, 15);
   background-color: rgb(194, 194, 250);
-  width: 150px;
+  width: 8em;
   text-align: center;
-  border-radius: 22px;
-  padding: 10px;
-  margin: 10px;
+  border-radius: 2em;
+  padding: 9px;
+  margin: 8px;
+  font-size: 1.1em;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-link:hover {
+  background-color: rgb(144, 144, 220);
 }
 
 ul.navbar-nav {
   justify-content: space-evenly;
   /* background-color: #697ba3; */
-
   border-radius: 0px 0px 10px 10px;
   width: 100%;
 }
@@ -148,18 +157,22 @@ div.collapsing {
   list-style-type: none;
   text-decoration: none;
   font-weight: bold;
-  margin-left: -30px;
+  margin-left: -2em;
 }
 
 .vertical-nav ul li {
   text-align: center;
-
   background-color: rgb(194, 194, 250);
-  padding: 5px;
-  margin: 10px;
-  border-radius: 17px;
+  padding: 0.5em;
+  margin: 1em;
+  border-radius: 1em;
+  box-shadow: 0px 5px 10px rgba(95, 103, 175, 0.3);
+  transition: background-color 0.3s ease;
+  font-size: 1.1em;
+}
 
-  /* box-shadow: 0px 5px 0px #3f4aaf; */
+.vertical-nav ul li:hover {
+  background-color: rgb(174, 174, 230);
 }
 
 .rounded-edges {
@@ -201,7 +214,7 @@ a {
 }
 
 .lottie {
-  width: 50vw;
+  width: auto;
   position: absolute;
   margin: 1em;
   bottom: 0;
