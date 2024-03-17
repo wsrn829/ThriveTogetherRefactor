@@ -12,8 +12,23 @@ import httpx
 import os
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        os.environ.get("CORS_HOST", "http://localhost:3000"),
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app.include_router(authenticator.router)
 app.include_router(messages_router)
+app.include_router(accounts.router)
+app.include_router(peers.router)
+app.include_router(matching.router)
+app.include_router(tags.router)
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
@@ -47,22 +62,9 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
         )
     return payload
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
-        os.environ.get("CORS_HOST", "http://localhost:3000"),
-        "http://localhost:3000",
-        "https://thrivetogether.netlify.app",
-    ],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
-app.include_router(accounts.router)
-app.include_router(peers.router)
-app.include_router(matching.router)
-app.include_router(tags.router)
+
+
 
 @app.get("/")
 def root():
