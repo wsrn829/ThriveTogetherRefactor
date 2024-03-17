@@ -20,12 +20,17 @@ function Nav() {
       let data = await response.json();
 
       if (response.ok) {
-        setUserData(data.account);
+        if (data && data.account) {
+          setUserData(data.account);
+        } else {
+          console.log(
+            "User data could not be fetched: 'account' property not found"
+          );
+        }
       } else {
-        console.log("User data could not be fetched");
+        console.log("User data could not be fetched: API request failed");
       }
     }
-
     getUserData();
   }, [token]);
 
