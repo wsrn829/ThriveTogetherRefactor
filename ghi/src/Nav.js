@@ -45,7 +45,7 @@ function Nav() {
           <nav className="navbar nav navbar-expand-lg">
             <div className="container-fluid">
               <Link className="navbar-brand" to="/">
-                Thrive Together
+                ThriveTogether
               </Link>
               <button
                 className="navbar-toggler"

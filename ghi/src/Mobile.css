@@ -63,8 +63,10 @@
 @media screen and (max-width: 570px) {
   /*Makes the main content take up more of the page on smaller screens*/
   .main-content {
+    margin-top: 15%;
+    margin-bottom: 0px;
     width: 100%;
-    padding: 0;
+    padding: 0px;
   }
 
   /*Shrinks the title on the landing page on smaller screens*/
@@ -76,6 +78,7 @@
   }
 
   .subtitle {
+    margin-top: 1em;
     margin-left: 50px;
   }
 }
