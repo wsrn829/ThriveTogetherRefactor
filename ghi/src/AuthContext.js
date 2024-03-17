@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from "react";
-import useToken from "./useToken";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 const AuthContext = createContext();
 

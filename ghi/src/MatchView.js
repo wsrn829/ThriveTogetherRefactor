@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PeerButton from "./PeerButton";
-import useToken from "./useToken";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 const MatchView = () => {
   const [matches, setMatches] = useState();
