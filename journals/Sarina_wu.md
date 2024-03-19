@@ -164,3 +164,18 @@ Implementing SSO involves changes on both the frontend (to handle the SSO proces
 ## 03/16/2024
 
 - Finally fixed the landing page buttons, which sometimes worked and sometime didn't on my end. Also worked on styling a little bit.
+
+
+## 03/17/2024
+
+- Tried to figure out if Galvanize version of auth was still working. I'd first try using that.
+
+## 03/18/2024
+
+- Debugged frontend, API, even disabled auth temporarily and still couldn't create an account in the database. Turned out my database was not connected/set up properly...I should have tested that first. Oh I miss Django so much. Built-in ORM was so easy. Will resume after I finish my coding assessment tomorrow.
+
+## 03/19/2024
+
+- 
+
+
