@@ -91,10 +91,10 @@ class AccountQueries:
                     ],
                 )
 
-                username = info.username
+                if cur.rowcount == 0:
+                    raise Exception("Failed to create user")
 
-        if username is not None:
-            return self.get_account(username)
+        return self.get_account(info.username)
 
     def update(self, id: int, info: AccountOut) -> AccountOut:
         with pool.connection() as conn:

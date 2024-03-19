@@ -4,6 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import QueuePool
+import os
 
 
 
@@ -12,7 +13,7 @@ database_url = os.getenv('DATABASE_URL')
 engine = create_engine(
     os.environ["DATABASE_URL"],
     poolclass=QueuePool,
-    pool_size=5,  # Maximum number of connections
+    pool_size=19,  # Maximum number of connections
 )
 
 Session = sessionmaker(bind=engine)

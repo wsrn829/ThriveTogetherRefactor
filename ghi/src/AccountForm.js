@@ -39,7 +39,7 @@ const AccountForm = () => {
           <div className="mb-3">
             <label className="form-label">Username</label>
             <input
-              name="Username"
+              name="username"
               type="text"
               required
               className="form-control"
@@ -51,7 +51,7 @@ const AccountForm = () => {
           <div className="mb-3">
             <label className="form-label">Password</label>
             <input
-              name="Password"
+              name="password"
               type="password"
               required
               className="form-control"
@@ -63,7 +63,7 @@ const AccountForm = () => {
           <div className="mb-3">
             <label className="form-label">Name</label>
             <input
-              name="Name"
+              name="name"
               type="text"
               required
               className="form-control"
@@ -75,7 +75,7 @@ const AccountForm = () => {
           <div className="mb-3">
             <label className="form-label">Age</label>
             <input
-              name="Age"
+              name="age"
               type="text"
               required
               className="form-control"
@@ -87,7 +87,7 @@ const AccountForm = () => {
           <div className="mb-3">
             <label className="form-label">Gender</label>
             <input
-              name="Gender"
+              name="gender"
               type="text"
               required
               className="form-control"
@@ -99,7 +99,7 @@ const AccountForm = () => {
           <div className="mb-3">
             <label className="form-label">Pronouns</label>
             <input
-              name="Pronouns"
+              name="pronouns"
               type="text"
               required
               className="form-control"
@@ -111,7 +111,7 @@ const AccountForm = () => {
           <div className="mb-3">
             <label className="form-label">Email</label>
             <input
-              name="Email"
+              name="email"
               type="text"
               required
               className="form-control"

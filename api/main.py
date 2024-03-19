@@ -10,6 +10,9 @@ from api.matching.routers import matching
 from api.tags.routers import tags
 import httpx
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI()
 
