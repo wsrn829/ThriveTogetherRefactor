@@ -176,3 +176,12 @@ Implementing SSO involves changes on both the frontend (to handle the SSO proces
 ## 03/19/2024
 
 - Just now learning that the root endpoint could work even without connecting to any database after deployment. Also means additional tests are needed to check database connection.
+
+## 03/20/2024
+
+- AI cannot even help me debug database connection, making me feel both annoyed and safe.
+
+- Every group has their unique Mod 3 final project, but varying in technical complexity. I didn't realize it until during an interview, I was asked why we chose this project and I said we actually had some other options, and the interviewer said obviously this one has more complex features and probably includes more "technical milestones". Maybe this is one of the reasons why I was able to get like 10+ assessments/interviews last year(?). I barely had time to work on projects because of those coding assessments/interviews coming one after another. Really proud of my teammates though.
+
+- According to the instructor, the most complex feature of this app is peer connection/request, followed by the messaging feature, idk if filtering users based on their tags is included in peer connection/request. I was in charge of the peer part and consequently had to work closely with most of my teammates. For graduation, we only needed to finish MVP, but for jobs, I definitely needed more. Our group was the only group (I guess) who implemented Redux even before graduation. I was so lucky.
+
