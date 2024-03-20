@@ -165,7 +165,6 @@ Implementing SSO involves changes on both the frontend (to handle the SSO proces
 
 - Finally fixed the landing page buttons, which sometimes worked and sometime didn't on my end. Also worked on styling a little bit.
 
-
 ## 03/17/2024
 
 - Tried to figure out if Galvanize version of auth was still working. I'd first try using that.
@@ -176,6 +175,4 @@ Implementing SSO involves changes on both the frontend (to handle the SSO proces
 
 ## 03/19/2024
 
-- 
-
-
+- Just now learning that the root endpoint could work even without connecting to any database after deployment. Also means additional tests are needed to check database connection.

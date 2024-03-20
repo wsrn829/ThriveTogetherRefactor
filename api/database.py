@@ -116,4 +116,20 @@ class UserTags(Base):
     tag = relationship('Tags', back_populates='user_tags')
 
 
-Base.metadata.create_all(engine)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+
+def connect_to_db():
+    return SessionLocal()
+
+
+def close_connection(db):
+    db.close()
+
+
+def close_engine():
+    engine.dispose()
+
+
+def initialize_database():
+    Base.metadata.create_all(bind=engine)

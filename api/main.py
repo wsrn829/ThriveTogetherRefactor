@@ -11,6 +11,10 @@ from api.tags.routers import tags
 import httpx
 import os
 from dotenv import load_dotenv
+import database
+
+# Initialize the database
+database.initialize_database()
 
 load_dotenv()
 
