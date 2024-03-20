@@ -3,16 +3,20 @@ from sqlalchemy.orm import relationship, declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import QueuePool
-from .main import app
 import os
 import sys
 print(sys.path)
 import re
 
+def get_app():
+    from .main import app
+    return app
+
 uri = os.getenv("DATABASE_URL")
 # or other relevant config var
 if uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://", 1)
+    app = get_app()
     app.config['SQLALCHEMY_DATABASE_URI'] = uri
 
 from dotenv import load_dotenv
@@ -34,6 +38,8 @@ Session = sessionmaker(bind=engine)
 
 
 Base = declarative_base()
+
+
 
 
 class Users(Base):

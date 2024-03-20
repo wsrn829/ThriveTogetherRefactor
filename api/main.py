@@ -13,7 +13,15 @@ import os
 from dotenv import load_dotenv
 from api import database
 
-target_metadata = database.Base.metadata
+def get_database():
+    import api.database
+    return api.database.Base.metadata
+
+database.initialize_database()
+
+
+
+target_metadata = get_database()
 # Initialize the database
 database.initialize_database()
 
