@@ -3,10 +3,10 @@ from sqlalchemy.orm import relationship, declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import QueuePool
+from .main import app
 import os
 import sys
 print(sys.path)
-import os
 import re
 
 uri = os.getenv("DATABASE_URL")
