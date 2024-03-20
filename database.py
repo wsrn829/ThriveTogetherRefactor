@@ -7,6 +7,7 @@ import os
 import sys
 print(sys.path)
 
+
 from dotenv import load_dotenv
 
 load_dotenv()

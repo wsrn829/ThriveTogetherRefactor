@@ -11,7 +11,7 @@ from api.tags.routers import tags
 import httpx
 import os
 from dotenv import load_dotenv
-import database
+from api import database
 
 target_metadata = database.Base.metadata
 # Initialize the database
