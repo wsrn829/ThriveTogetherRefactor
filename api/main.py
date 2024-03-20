@@ -13,6 +13,7 @@ import os
 from dotenv import load_dotenv
 import database
 
+target_metadata = database.Base.metadata
 # Initialize the database
 database.initialize_database()
 

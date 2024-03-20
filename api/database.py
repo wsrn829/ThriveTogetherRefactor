@@ -6,9 +6,14 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import QueuePool
 import os
 
+from dotenv import load_dotenv
 
+load_dotenv()
 
-database_url = os.getenv('DATABASE_URL')
+# Now you can access the environment variable as before
+database_url = os.environ["DATABASE_URL"]
+
+# database_url = os.getenv('DATABASE_URL')
 
 engine = create_engine(
     os.environ["DATABASE_URL"],
