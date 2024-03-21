@@ -1,46 +1,24 @@
-from sqlalchemy import Boolean, DateTime, Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship, declarative_base
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.pool import QueuePool
 import os
-import sys
-print(sys.path)
-import re
+from sqlalchemy import create_engine, Boolean, DateTime, Column, Integer, String, ForeignKey
+from sqlalchemy.orm import sessionmaker, relationship
+from sqlalchemy.pool import QueuePool
+from sqlalchemy.ext.declarative import declarative_base
 
-def get_app():
-    from .main import app
-    return app
-
-uri = os.getenv("DATABASE_URL")
-# or other relevant config var
-if uri.startswith("postgres://"):
-    uri = uri.replace("postgres://", "postgresql://", 1)
-    app = get_app()
-    app.config['SQLALCHEMY_DATABASE_URI'] = uri
-
-from dotenv import load_dotenv
-
-load_dotenv()
-
-# Now you can access the environment variable as before
-database_url = os.environ["DATABASE_URL"]
-
-# database_url = os.getenv('DATABASE_URL')
-
-engine = create_engine(
-    os.environ["DATABASE_URL"],
-    poolclass=QueuePool,
-    pool_size=19,  # Maximum number of connections
-)
-
-Session = sessionmaker(bind=engine)
-
-
+engine = None
+SessionLocal = None
 Base = declarative_base()
 
+def initialize_database():
+    global engine, SessionLocal
+    uri = os.getenv("DATABASE_URL")
+    if uri.startswith("postgres://"):
+        uri = uri.replace("postgres://", "postgresql://", 1)
 
+    engine = create_engine(uri, poolclass=QueuePool, pool_size=19)
+    SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
+def get_database():
+    return Base.metadata
 
 class Users(Base):
     __tablename__ = 'users'
@@ -59,10 +37,8 @@ class Users(Base):
     about_me = Column(String(5000))
     my_story = Column(String(5000))
 
-    # Relationship to Peers
     peers = relationship("Peers", back_populates="user")
     user_tags = relationship('UserTags', back_populates='user')
-
 
 class Peers(Base):
     __tablename__ = 'peers'
@@ -76,9 +52,7 @@ class Peers(Base):
     profile_image = Column(String)
     status = Column(Integer, nullable=False)
 
-    # Relationship to Users
     user = relationship("Users", back_populates="peers")
-
 
 class PeerRequests(Base):
     __tablename__ = 'peer_requests'
@@ -91,10 +65,8 @@ class PeerRequests(Base):
     sender_name = Column(String, nullable=False)
     recipient_name = Column(String, nullable=False)
 
-    # Relationships
     sender_user = relationship('Users', foreign_keys=[sender])
     recipient_user = relationship('Users', foreign_keys=[recipient])
-
 
 class Messages(Base):
     __tablename__ = 'messages'
@@ -107,11 +79,9 @@ class Messages(Base):
     is_read = Column(Boolean)
     user_id = Column(Integer)
 
-    # Relationships
     sender_user = relationship('Users', foreign_keys=[sender])
     recipient_user = relationship('Users', foreign_keys=[recipient])
     user = relationship('Users', foreign_keys=[user_id])
-
 
 class Tags(Base):
     __tablename__ = 'tags'
@@ -119,10 +89,7 @@ class Tags(Base):
     id = Column(Integer, primary_key=True, nullable=False)
     tag = Column(String, nullable=False, unique=True)
 
-    # Relationships
     user_tags = relationship('UserTags', back_populates='tag')
-
-
 
 class UserTags(Base):
     __tablename__ = 'user_tags'
@@ -131,25 +98,14 @@ class UserTags(Base):
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     tag_id = Column(Integer, ForeignKey('tags.id'), nullable=False)
 
-    # Relationships
     user = relationship('Users', back_populates='user_tags')
     tag = relationship('Tags', back_populates='user_tags')
-
-
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
 
 def connect_to_db():
     return SessionLocal()
 
-
 def close_connection(db):
     db.close()
 
-
 def close_engine():
     engine.dispose()
-
-
-def initialize_database():
-    Base.metadata.create_all(bind=engine)
