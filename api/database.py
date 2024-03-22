@@ -98,7 +98,7 @@ def initialize_database():
         uri = uri.replace("postgres://", "postgresql://", 1)
 
     engine = create_engine(uri, poolclass=QueuePool, pool_size=10, max_overflow=10)
-    Base.metadata.create_all(bind=engine)
+    Base.metadata.create_all(bind=engine, checkfirst=True)
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
