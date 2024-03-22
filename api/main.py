@@ -10,13 +10,8 @@ from api.peers.routers import peers
 from api.matching.routers import matching
 from api.tags.routers import tags
 
-from .database import initialize_database
-
 # Initialize environment variables
 load_dotenv()
-
-# Initialize the database
-initialize_database()
 
 # Import FastAPI app and security scheme
 app = FastAPI()
