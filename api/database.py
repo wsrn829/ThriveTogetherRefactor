@@ -102,12 +102,12 @@ def initialize_database():
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
-def connect_to_db():xe
+def connect_to_db():
     return SessionLocal()
 
 def close_connection(db):
     db.close()
-xe
+
 def close_engine():
     engine.dispose()
 
