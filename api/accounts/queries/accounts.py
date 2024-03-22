@@ -2,6 +2,7 @@ import os
 from ..models import AccountIn, AccountOut, AccountOutWithPassword
 from psycopg_pool import ConnectionPool
 
+
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
 
@@ -10,7 +11,6 @@ class DuplicateAccountError(ValueError):
 
 
 class AccountQueries:
-
     def get_account(self, username: str) -> AccountOutWithPassword:
         with pool.connection() as conn:
             with conn.cursor() as cur:

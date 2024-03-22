@@ -4,21 +4,8 @@ from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.pool import QueuePool
 from sqlalchemy.ext.declarative import declarative_base
 
-engine = None
-SessionLocal = None
+
 Base = declarative_base()
-
-def initialize_database():
-    global engine, SessionLocal
-    uri = os.getenv("DATABASE_URL")
-    if uri.startswith("postgres://"):
-        uri = uri.replace("postgres://", "postgresql://", 1)
-
-    engine = create_engine(uri, poolclass=QueuePool, pool_size=5, max_overflow=10)
-    SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-def get_database():
-    return Base.metadata
 
 class Users(Base):
     __tablename__ = 'users'
@@ -101,6 +88,19 @@ class UserTags(Base):
     user = relationship('Users', back_populates='user_tags')
     tag = relationship('Tags', back_populates='user_tags')
 
+engine = None
+SessionLocal = None
+
+def initialize_database():
+    global engine, SessionLocal
+    uri = os.getenv("DATABASE_URL")
+    if uri.startswith("postgres://"):
+        uri = uri.replace("postgres://", "postgresql://", 1)
+
+    engine = create_engine(uri, poolclass=QueuePool, pool_size=5, max_overflow=10)
+    SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+
 def connect_to_db():
     return SessionLocal()
 
@@ -109,3 +109,16 @@ def close_connection(db):
 
 def close_engine():
     engine.dispose()
+
+def initialize_database():
+    Base.metadata.create_all(bind=engine)
+
+def get_db():
+    db = connect_to_db()
+    try:
+        yield db
+    finally:
+        close_connection(db)
+
+def get_database():
+    return Base.metadata

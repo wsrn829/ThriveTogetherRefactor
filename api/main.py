@@ -14,10 +14,13 @@ from api.peers.routers import peers
 from api.matching.routers import matching
 from api.tags.routers import tags
 
+from .database import initialize_database
 
 # Initialize environment variables
 load_dotenv()
 
+# Initialize the database
+initialize_database()
 
 # Import FastAPI app and security scheme
 app = FastAPI()
@@ -98,4 +101,5 @@ def launch_details():
 async def read_users_me(
     # current_user: dict = Depends(get_current_user)
     ):
-    return current_user
+    # return current_user
+    return {"user": "dummy user"}
