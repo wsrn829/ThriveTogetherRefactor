@@ -98,6 +98,7 @@ def initialize_database():
         uri = uri.replace("postgres://", "postgresql://", 1)
 
     engine = create_engine(uri, poolclass=QueuePool, pool_size=5, max_overflow=10)
+    Base.metadata.create_all(bind=engine)
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
@@ -109,9 +110,6 @@ def close_connection(db):
 
 def close_engine():
     engine.dispose()
-
-def initialize_database():
-    Base.metadata.create_all(bind=engine)
 
 def get_db():
     db = connect_to_db()
