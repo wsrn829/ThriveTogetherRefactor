@@ -7,6 +7,7 @@ from api.authenticator import authenticator
 from api.messages.routers.messages import messages_router
 from api.accounts.routers import accounts
 from api.peers.routers import peers
+from api.peer_requests.routers import peer_requests
 from api.matching.routers import matching
 from api.tags.routers import tags
 
@@ -31,6 +32,7 @@ app.include_router(authenticator.router)
 app.include_router(messages_router)
 app.include_router(accounts.router)
 app.include_router(peers.router)
+app.include_router(peer_requests.router)
 app.include_router(matching.router)
 app.include_router(tags.router)
 

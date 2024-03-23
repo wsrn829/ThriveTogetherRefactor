@@ -13,6 +13,7 @@ COPY accounts accounts
 COPY matching matching
 COPY messages messages
 COPY peers peers
+COPY peer_requests peer_requests
 COPY tags tags
 COPY test test
 COPY authenticator.py authenticator.py
@@ -28,4 +29,4 @@ RUN python -m pip install -r requirements.txt
 # uncomment the following COPY and CMD lines
 COPY migrations migrations
 # !! PORT env var needs to match with exposed port in caprover dashboard
-CMD python -m migrations up && uvicorn main:app --host 0.0.0.0 --port 80
+CMD python -m api.migrations up && uvicorn main:app --host 0.0.0.0 --port 80

@@ -1,24 +1,3 @@
-import os
-from dotenv import load_dotenv
-import psycopg2
-
-# Load environment variables from .env file
-load_dotenv()
-
-# Fetch the DATABASE_URL from environment variables
-DATABASE_URL = os.getenv("DATABASE_URL")
-
-def execute_sql(sql_statements):
-    conn = psycopg2.connect(DATABASE_URL)
-    cur = conn.cursor()
-    try:
-        for sql in sql_statements:
-            cur.execute(sql)
-        conn.commit()
-    finally:
-        cur.close()
-        conn.close()
-
 steps = [
     [
         """
@@ -122,10 +101,3 @@ steps = [
         """
     ],
 ]
-
-def migrate():
-    for step in steps:
-        execute_sql(step)
-
-if __name__ == "__main__":
-    migrate()

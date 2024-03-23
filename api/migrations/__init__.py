@@ -4,10 +4,12 @@ from itertools import zip_longest
 import os.path
 from pathlib import Path
 
-from asyncpg import Connection as AsyncConnection
-from psycopg2.extras import RealDictCursor
+from psycopg import AsyncConnection
+from psycopg.rows import class_row
 from pydantic import BaseModel
 from typing import Optional
+
+import asyncpg
 
 
 LATEST = {}
@@ -39,6 +41,16 @@ class MigrationStep(BaseModel):
 class MigrationFile(MigrationRecord):
     steps: list[MigrationStep]
 
+async def run():
+    conn = await asyncpg.connect(
+        user='example_user',
+        password='secret',
+        database='postgres-data',
+        host='postgres'
+    )
+    print("Connection successful")
+    await conn.close()
+
 
 async def read_migrations(dir: str) -> list[MigrationFile]:
     migrations = []
@@ -66,26 +78,36 @@ async def read_migrations(dir: str) -> list[MigrationFile]:
 
 async def ensure_migrations_table(db_url: str):
     async with await AsyncConnection.connect(db_url) as conn:
-        await conn.execute(
-            """
-            CREATE TABLE IF NOT EXISTS migrations (
-                name VARCHAR(300) PRIMARY KEY NOT NULL,
-                digest BYTEA NOT NULL
-            );
-            """
-        )
+        async with conn.cursor() as db:
+            await conn.execute(
+                """
+                CREATE TABLE IF NOT EXISTS migrations (
+                    name VARCHAR(300) PRIMARY KEY NOT NULL,
+                    digest BYTEA NOT NULL
+                );
+                """
+            )
 
 
 async def current_migrations(db_url: str) -> list[MigrationRecord]:
     async with await AsyncConnection.connect(db_url) as conn:
-        rows = await conn.fetch(
-            """
-            SELECT name, digest
-            FROM migrations
-            ORDER BY name;
-            """
-        )
-        return [MigrationRecord(**dict(row)) for row in rows]
+        async with conn.cursor(row_factory=class_row(MigrationRecord)) as db:
+            await db.execute(
+                """
+                SELECT name, digest
+                FROM migrations
+                ORDER BY name;
+                """
+            )
+            return await db.fetchall()
+        # rows = await conn.fetch(
+        #     """
+        #     SELECT name, digest
+        #     FROM migrations
+        #     ORDER BY name;
+        #     """
+        # )
+        # return [MigrationRecord(**dict(row)) for row in rows]
 
 
 async def up(db_url, to=LATEST, dir=os.path.dirname(__file__)):
@@ -102,15 +124,16 @@ async def up(db_url, to=LATEST, dir=os.path.dirname(__file__)):
         elif record and migration == record:
             continue
         async with await AsyncConnection.connect(db_url) as conn:
-            for step in migration.steps:
-                await conn.execute(step.up)
-            await conn.execute(
-                """
-                INSERT INTO migrations (name, digest)
-                VALUES ($1, $2)
-                """,
-                migration.name, migration.digest,
-            )
+            async with conn.cursor() as db:
+                for step in migration.steps:
+                    await conn.execute(step.up)
+                await conn.execute(
+                    """
+                    INSERT INTO migrations (name, digest)
+                    VALUES (%s, %s)
+                    """,
+                    [migration.name, migration.digest],
+                )
 
 
 async def down(db_url, to=ZERO, dir=os.path.dirname(__file__)):
@@ -125,12 +148,16 @@ async def down(db_url, to=ZERO, dir=os.path.dirname(__file__)):
             message = f"Incompatible migration history at {migration.name}"
             raise RuntimeError(message)
         async with await AsyncConnection.connect(db_url) as conn:
-            for step in reversed(migration.steps):
-                await conn.execute(step.down)
-            await conn.execute(
-                """
-                DELETE FROM migrations
-                WHERE name = $1;
-                """,
-                migration.name,
-            )
+            async with conn.cursor() as db:
+                for step in reversed(migration.steps):
+                    await conn.execute(step.down)
+                await conn.execute(
+                    """
+                    DELETE FROM migrations
+                    WHERE name = %s;
+                    """,
+                    [migration.name],
+                )
+
+if __name__ == "__main__":
+    asyncio.run(run())
