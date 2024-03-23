@@ -185,3 +185,16 @@ Implementing SSO involves changes on both the frontend (to handle the SSO proces
 
 - According to the instructor, the most complex feature of this app is peer connection/request, followed by the messaging feature, idk if filtering users based on their tags is included in peer connection/request. I was in charge of the peer part and consequently had to work closely with most of my teammates. For graduation, we only needed to finish MVP, but for jobs, I definitely needed more. Our group was the only group (I guess) who implemented Redux even before graduation. I was so lucky.
 
+## 03/21/2024
+
+- SQLAlchemy and alembic not compatible with main backend queries. I don't want to make major changes in backend code, so deleted SQLAlchemy and alembic, and created migrations files.
+
+- Did extensive debugging on main.py and init.py in migrations.
+
+## 03/22/2024
+
+- Fixed Docker container errors.
+
+- Created local postgres database. Too sleepy to work on Heroku database. Will save for tomorrow.
+
+- Actually getting "too many connections" error again. Good thing is: this is the only remaining issue right now. Bad thing is: I already spent two days on this error.
