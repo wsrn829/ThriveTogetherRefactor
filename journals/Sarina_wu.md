@@ -198,3 +198,7 @@ Implementing SSO involves changes on both the frontend (to handle the SSO proces
 - Created local postgres database. Too sleepy to work on Heroku database. Will save for tomorrow.
 
 - Actually getting "too many connections" error again. Good thing is: this is the only remaining issue right now. Bad thing is: I already spent two days on this error.
+
+## 03/23/2024
+
+- Turned out an easy fix. Just because the amount of apps I deployed on Heroku exceeded their connection limit. (ps, when someone said it's crazy to have three databases for a personal project app, I didn't do anything.) This is also why Galvanize cloud platform was no longer available after three months I believe.

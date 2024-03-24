@@ -1,4 +1,5 @@
 import os
+from typing import Union
 from ..models import TagsOut, AllTagsOut, HttpError, SuccessMessage
 from psycopg_pool import ConnectionPool
 
@@ -39,7 +40,7 @@ class TagQueries:
                     tags.append(tag)
                 return {"tags": tags}
 
-    def add_user_tag(self, user_id, tag_id) -> HttpError | SuccessMessage:
+    def add_user_tag(self, user_id, tag_id) -> Union[HttpError, SuccessMessage]:
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
@@ -61,7 +62,7 @@ class TagQueries:
 
                     return {"success": "Tag successfully added!"}
 
-    def delete_user_tag(self, user_id, tag_id) -> HttpError | SuccessMessage:
+    def delete_user_tag(self, user_id, tag_id) -> Union[HttpError, SuccessMessage]:
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(

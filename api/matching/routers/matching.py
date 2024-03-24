@@ -6,6 +6,7 @@ from fastapi import (
 from ..models import MatchesOut, HttpError
 from ..queries.matching import MatchQueries
 from api.authenticator import authenticator
+from typing import Union
 
 
 router = APIRouter()
@@ -27,7 +28,7 @@ router = APIRouter()
 
 @router.get("/api/matches/{tag}",
             tags=["Matches"],
-            response_model=MatchesOut | HttpError
+            response_model=Union[MatchesOut, HttpError]
             )
 async def get_matches(
     tag: str,

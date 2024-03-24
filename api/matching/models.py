@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import List, Optional
 
 
 class HttpError(BaseModel):
@@ -12,10 +13,10 @@ class TagsOut(BaseModel):
 class MatchOut(BaseModel):
     username: str
     id: int
-    tags: list[str]
-    about_me: str | None
-    profile_link: str | None
-    profile_image: str | None
+    tags: List[str]
+    about_me: Optional[str]
+    profile_link: Optional[str]
+    profile_image: Optional[str]
     gender: str
     pronouns: str
 

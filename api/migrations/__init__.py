@@ -10,6 +10,7 @@ from pydantic import BaseModel
 from typing import Optional
 
 import asyncpg
+import asyncio
 
 
 LATEST = {}
@@ -42,13 +43,18 @@ class MigrationFile(MigrationRecord):
     steps: list[MigrationStep]
 
 async def run():
-    conn = await asyncpg.connect(
-        user='example_user',
-        password='secret',
-        database='postgres-data',
-        host='postgres'
-    )
+    # Parse database URL
+    database_url = os.environ.get('DATABASE_URL')
+    if not database_url:
+        raise EnvironmentError("DATABASE_URL environment variable is not set")
+
+    # Connect to the database using the URL
+    conn = await asyncpg.connect(database_url)
+
+    # Print success message
     print("Connection successful")
+
+    # Close the connection
     await conn.close()
 
 

@@ -3,6 +3,7 @@ from fastapi import (
     Response,
     APIRouter,
 )
+from typing import Union
 from ..models import Tag, TagsOut, HttpError, AllTagsOut, SuccessMessage
 from ..queries.tags import TagQueries
 from api.authenticator import authenticator
@@ -13,7 +14,7 @@ router = APIRouter()
 @router.get(
     "/api/tags",
     tags=["Tags"],
-    response_model=AllTagsOut | HttpError,
+    response_model=Union[AllTagsOut, HttpError],
 )
 async def get_all_tags(
     response: Response,
@@ -30,7 +31,7 @@ async def get_all_tags(
 @router.get(
     "/api/tags/{username}",
     tags=["Tags"],
-    response_model=TagsOut | HttpError,
+    response_model=Union[TagsOut, HttpError],
 )
 async def get_user_tags(
     username: str,
@@ -49,7 +50,7 @@ async def get_user_tags(
 @router.post(
     "/api/tags/{tag_id}",
     tags=["Tags"],
-    response_model=HttpError | SuccessMessage,
+    response_model=Union[HttpError, SuccessMessage],
 )
 async def add_user_tag(
     tag_id: int,
@@ -71,7 +72,7 @@ async def add_user_tag(
 @router.delete(
     "/api/tags/{tag_id}",
     tags=["Tags"],
-    response_model=HttpError | SuccessMessage,
+    response_model=Union[HttpError, SuccessMessage],
 )
 async def delete_user_tag(
     tag_id: int,

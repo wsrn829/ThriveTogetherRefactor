@@ -10,6 +10,7 @@ from jwtdown_fastapi.authentication import Token
 from api.authenticator import authenticator
 
 from pydantic import BaseModel
+from typing import Union
 
 from ..queries.accounts import (
     AccountIn,
@@ -17,7 +18,6 @@ from ..queries.accounts import (
     AccountQueries,
     DuplicateAccountError,
     )
-
 
 class AccountForm(BaseModel):
     username: str
@@ -37,7 +37,7 @@ router = APIRouter()
 
 @router.post("/api/accounts",
              tags=["Accounts"],
-             response_model=AccountToken | HttpError
+             response_model=Union[AccountToken, HttpError]
              )
 async def create_account(
     info: AccountIn,
@@ -96,11 +96,11 @@ async def update_account_info(
     return updated_account
 
 
-@router.get("/token", response_model=AccountToken | None)
+@router.get("/token", response_model=Union[AccountToken, None])
 async def get_token(
     request: Request,
     account: AccountOut = Depends(authenticator.try_get_current_account_data)
-) -> AccountToken | None:
+) -> Union[AccountToken, None]:
     if account and authenticator.cookie_name in request.cookies:
         return {
             "access_token": request.cookies[authenticator.cookie_name],
