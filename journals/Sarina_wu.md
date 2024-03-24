@@ -215,4 +215,8 @@ Implementing SSO involves changes on both the frontend (to handle the SSO proces
 
 - Another solution is to optimize my code. Last year, Amanda and I tried to implement Reudx refactor before deployment in order to reduce database interactions, but Sam told us there's little change in cost after they had done the same.
 
-- At least I've started thinking about solving "real-world" problem, i.e. saving money, now. Much better than when being asked what kind of real-world problem I've faced and how I've solved them, I'd tend to say that actually I never encountered any real-world problem as an engineer...
+- At least I've started thinking about solving "real-world" problem, i.e. saving money, now. Much better than when being asked what kind of real-world problems I've faced and how I've solved them, I'd tend to say that actually I never encountered any real-world problem as an engineer...
+
+- I was able to create a new row in the users table in the database after signing in, which means my frontend-backend-database system is at least connected in some way, but I don't think authentication is working properly. Tanner had said that he watched the authentication tutorial video at least eight times, which was of little help (?). My priority rn again becomes understanding what is going on with auth.
+
+- 
