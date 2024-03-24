@@ -208,3 +208,11 @@ Implementing SSO involves changes on both the frontend (to handle the SSO proces
 - Ran migration files and successfully created all tables in the database.
 
 - Next step is to check if I could add data into the tables as well as if my authentication would work.
+
+## 03/24/3024
+
+- As an "engineer", first time thinking about how to reduce cost, which I should have be thinking about all the time. My Heroku database plan is up to $50/month to get my apps work right now. Actually I was able to create a postgres database using AWS 12-month free database plan last night (thinking it'd be nice to both reduce cost and put AWS on my resume), but wasn't able to connect it with my app. But I did get a list of free database plans on different platforms, including AWS, Microsoft Azure, Google Cloud, Firebase, etc, ranging from 3 to 12 months per account.
+
+- Another solution is to optimize my code. Last year, Amanda and I tried to implement Reudx refactor before deployment in order to reduce database interactions, but Sam told us there's little change in cost after they had done the same.
+
+- At least I've started thinking about solving "real-world" problem, i.e. saving money, now. Much better than when being asked what kind of real-world problem I've faced and how I've solved them, I'd tend to say that actually I never encountered any real-world problem as an engineer...
