@@ -234,3 +234,39 @@ Implementing SSO involves changes on both the frontend (to handle the SSO proces
 - The backend verifies the token's signature and extracts user information from it. If the token is valid, the request is authenticated; otherwise, it's rejected.
 
 ==> The above is the authentication process in plain English. Implement it in code now.
+
+## Example Flow:
+
+1. Frontend Login:
+
+- User enters credentials.
+
+- Frontend sends credentials to the backend.
+
+- Backend validates credentials and responds with a token if valid.
+
+2. Storing Token:
+
+- Frontend stores the token securely (e.g., in localStorage).
+
+3. Protected Routes:
+
+- For each request to a protected route, the frontend sends the token in the Authorization header.
+
+4. Backend Authentication:
+
+- Backend verifies the token's signature and extracts user information.
+
+- If the token is valid, the request is authenticated.
+
+5. Token Expiry Handling:
+
+- If the token expires, the backend responds with a 401 Unauthorized status.
+
+- The frontend detects this response and prompts the user to log in again.
+
+## Code Structure:
+
+- Frontend: Implement login/logout components, handle token storage, and include token in requests.
+
+- Backend: Implement token generation, middleware for token validation, and protected routes.
