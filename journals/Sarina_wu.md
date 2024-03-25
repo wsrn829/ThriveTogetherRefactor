@@ -209,14 +209,28 @@ Implementing SSO involves changes on both the frontend (to handle the SSO proces
 
 - Next step is to check if I could add data into the tables as well as if my authentication would work.
 
-## 03/24/3024
+## 03/24/2024
 
-- As an "engineer", first time thinking about how to reduce cost, which I should have be thinking about all the time. My Heroku database plan is up to $50/month to get my apps work right now. Actually I was able to create a postgres database using AWS 12-month free database plan last night (thinking it'd be nice to both reduce cost and put AWS on my resume), but wasn't able to connect it with my app. But I did get a list of free database plans on different platforms, including AWS, Microsoft Azure, Google Cloud, Firebase, etc, ranging from 3 to 12 months per account.
+- As an "engineer", first time thinking about how to reduce cost, which I should have been thinking about all the time. My Heroku database plan is up to $50/month to get my apps working right now. Actually I was able to create a postgres database using AWS 12-month free database plan last night (thinking it'd be nice to both reduce cost and put AWS on my resume), but wasn't able to connect it with my app. But I did get a list of free database plans on different platforms, including AWS, Microsoft Azure, Google Cloud, Firebase, etc, ranging from 3 to 12 months per account.
 
-- Another solution is to optimize my code. Last year, Amanda and I tried to implement Reudx refactor before deployment in order to reduce database interactions, but Sam told us there's little change in cost after they had done the same.
+- Another solution is to optimize my code. Last year, Amanda and I tried to implement Redux refactor before deployment in order to reduce database interactions, but Sam told us there's little change in cost after they had done the same.
 
-- At least I've started thinking about solving "real-world" problem, i.e. saving money, now. Much better than when being asked what kind of real-world problems I've faced and how I've solved them, I'd tend to say that actually I never encountered any real-world problem as an engineer...
+- At least I've started thinking about solving "real-world" problems, such as saving money. Much better than when asked about what kind of real-world problems I've faced and how I've solved them, I'd tend to say that actually I never encountered any real-world problem as an engineer...
 
 - I was able to create a new row in the users table in the database after signing in, which means my frontend-backend-database system is at least connected in some way, but I don't think authentication is working properly. Tanner had said that he watched the authentication tutorial video at least eight times, which was of little help (?). My priority rn again becomes understanding what is going on with auth.
 
-- 
+## 03/25/2024
+
+- The only function of the signup form is to create new rows in the users table in the database, which is functioning perfectly rn.
+
+- Token generation has nothing to do with the signup process; it is only generated during login.
+
+- Signup is only relevant to authentication in the sense that we require user information generated during the signup process for validation, which is followed by token generation from the backend upon successful verification. Signup is also relevant because typically the webpage redirects to the login page after signup.
+
+- Token generation is the core of "Backend Auth". The backend generates a token containing user information and signs it with a secret key.
+
+- The frontend stores the token securely, usually in browser storage. When accessing protected routes, the frontend sends the token with each request in the Authorization header.
+
+- The backend verifies the token's signature and extracts user information from it. If the token is valid, the request is authenticated; otherwise, it's rejected.
+
+==> The above is the authentication process in plain English. Implement it in code now.
