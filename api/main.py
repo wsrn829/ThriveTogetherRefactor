@@ -42,20 +42,20 @@ app.include_router(tags.router)
 def root():
     return {"message": "You hit the root path!"}
 
-# # Dummy endpoint for launch details
-# @app.get("/api/launch-details")
-# def launch_details():
-#     return {
-#         "launch_details": {
-#             "module": 3,
-#             "week": 17,
-#             "day": 5,
-#             "hour": 19,
-#             "min": "00",
-#         }
-#     }
+# Dummy endpoint for launch details
+@app.get("/api/launch-details")
+def launch_details():
+    return {
+        "launch_details": {
+            "module": 3,
+            "week": 17,
+            "day": 5,
+            "hour": 19,
+            "min": "00",
+        }
+    }
 
-# # Dummy endpoint to get current user info
-# @app.get("/users/me")
-# async def read_users_me():
-#     return {"user": "dummy user"}
+# Dummy endpoint to get current user info
+@app.get("/users/me")
+async def read_users_me():
+    return {"user": "dummy user"}

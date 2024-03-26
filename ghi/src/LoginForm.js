@@ -10,6 +10,8 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Username:", username);
+    console.log("Password:", password);
     if (!username || !password) {
       alert("Please enter both username and password.");
       return;
