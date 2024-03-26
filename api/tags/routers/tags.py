@@ -1,8 +1,4 @@
-from fastapi import (
-    Depends,
-    Response,
-    APIRouter,
-)
+from fastapi import Depends, Response, APIRouter
 from typing import Union
 from ..models import Tag, TagsOut, HttpError, AllTagsOut, SuccessMessage
 from ..queries.tags import TagQueries

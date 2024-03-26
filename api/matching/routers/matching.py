@@ -1,8 +1,4 @@
-from fastapi import (
-    Depends,
-    Response,
-    APIRouter,
-)
+from fastapi import Depends, Response, APIRouter
 from ..models import MatchesOut, HttpError
 from ..queries.matching import MatchQueries
 from api.authenticator import authenticator
