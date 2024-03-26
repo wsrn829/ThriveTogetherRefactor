@@ -1,7 +1,7 @@
 import logo from "./images/thrivetogether2.png";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { NavLink, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 function Nav() {
   const [userData, setUserData] = useState({});
