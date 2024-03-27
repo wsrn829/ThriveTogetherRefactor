@@ -22,7 +22,7 @@ const LoginForm = () => {
       await login(username, password);
       setUsername("");
       setPassword("");
-      navigate("/profile");
+      navigate("/info");
     } catch (error) {
       console.error("Login error:", error);
       alert("Login failed. Please check your credentials and try again.");
