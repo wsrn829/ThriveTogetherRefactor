@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import useAuthActions from "./AuthContext";
 
@@ -7,7 +7,7 @@ const AccountInfo = () => {
   const [accountInfo, setAccountInfo] = useState("");
   const { fetchWithToken } = useAuthActions();
 
-  const getAccountInfo = async () => {
+  const getAccountInfo = useCallback(async () => {
     try {
       let url = `${process.env.REACT_APP_API_HOST}/api/accounts/${userId}`;
       let [data, responseOk] = await fetchWithToken(url, "GET");
@@ -20,13 +20,13 @@ const AccountInfo = () => {
     } catch (error) {
       console.error("Error fetching account info:", error);
     }
-  };
+  }, [userId, fetchWithToken]);
 
   useEffect(() => {
     if (userId) {
       getAccountInfo();
     }
-  }, [userId, fetchWithToken]);
+  }, [userId, getAccountInfo]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
