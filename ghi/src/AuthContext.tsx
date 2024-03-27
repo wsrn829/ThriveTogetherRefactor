@@ -188,6 +188,7 @@ const useAuthActions = () => {
       console.error("Token is not available");
       return [null, false];
     }
+    console.log("Token:", token);
     try {
       const response = await fetch(url, {
         method,
