@@ -184,6 +184,10 @@ const useAuthActions = () => {
     otherHeaders: object = {},
     options: object = {}
   ): Promise<any> => {
+    if (!token) {
+      console.error("Token is not available");
+      return [null, false];
+    }
     try {
       const response = await fetch(url, {
         method,
