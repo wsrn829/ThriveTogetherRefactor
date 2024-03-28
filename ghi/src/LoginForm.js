@@ -1,12 +1,12 @@
 // import useToken from "@galvanize-inc/jwtdown-for-react";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useToken from "./AuthContext";
+import useAuthActions from "./AuthContext";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { login, token } = useToken();
+  const { login, token } = useAuthActions();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {

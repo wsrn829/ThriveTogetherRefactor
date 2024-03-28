@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useNavigate } from "react-router-dom";
+import useAuthActions from "./AuthContext";
 
 const AccountForm = () => {
   const [username, setUsername] = useState("");
@@ -10,10 +10,10 @@ const AccountForm = () => {
   const [gender, setGender] = useState("");
   const [pronouns, setPronouns] = useState("");
   const [email, setEmail] = useState("");
-  const { register } = useToken();
+  const { register } = useAuthActions();
   const navigate = useNavigate();
 
-  const handleRegistration = (e) => {
+  const handleRegistration = async (e) => {
     e.preventDefault();
     const accountData = {
       username: username,
@@ -24,9 +24,17 @@ const AccountForm = () => {
       pronouns: pronouns,
       email: email,
     };
-    register(accountData, `${process.env.REACT_APP_API_HOST}/api/accounts`);
-    e.target.reset();
-    navigate("/login");
+    try {
+      await register(
+        accountData,
+        `${process.env.REACT_APP_API_HOST}/api/accounts`
+      );
+      e.target.reset();
+      navigate("/login");
+    } catch (error) {
+      console.error("Registration error:", error);
+      alert("Registration failed. Please check your details and try again.");
+    }
   };
 
   return (
