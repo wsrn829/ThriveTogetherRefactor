@@ -59,7 +59,7 @@ class MyAuthenticator(Authenticator):
 two_hours = timedelta(hours=2)
 
 authenticator = MyAuthenticator(
-    os.environ["SIGNING_KEY"]
+    os.environ["SIGNING_KEY"],
     exp=two_hours,
 )
 
