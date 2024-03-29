@@ -282,3 +282,9 @@ Implementing SSO involves changes on both the frontend (to handle the SSO proces
 ## 03/27/2024
 
 - I was able to signup, which redirects me to login; I was also able to login, which redirects me to profile page. But I got a 401 unauthorized request error trying to retrieve my user info, which probably because not getting a token from the backend (could be bc of code, could be bc of the library imported). I really hope I could implement a more "popular" Auth though (then I don't need to guess if the library is disabled all the time anymore).
+
+## 03/28/2024
+
+- First time seeing the actual token appearing in the console after login today, which is exciting. This not only means the backend library is working so that I don't have to implement a new one at the moment, but also means the AuthContext.tsx file I added is functioning.
+
+- By now, I have completed two of three main tasks: connecting database and retrieving token after login. Only remaining thing is to adjust each feature's frontend as well as backend code to ensure the retrieved token and other data is being returned to the server for validation in the correct format. Seems promising though.
