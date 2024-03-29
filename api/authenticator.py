@@ -5,6 +5,25 @@ from jwtdown_fastapi.authentication import Authenticator
 from api.accounts.queries.accounts import AccountQueries
 from api.accounts.models import AccountOut, AccountOutWithPassword
 
+class TestAuthenticator(Authenticator):
+    def __init__(self, key):
+        super().__init__(key)
+
+    async def get_account_data(self, username: str):
+        pass
+
+    def get_account_getter(self):
+        pass
+
+    def get_hashed_password(self, account):
+        pass
+
+# Try to create an instance of TestAuthenticator
+try:
+    authenticator = TestAuthenticator(os.environ['SIGNING_KEY'])
+    print("jwtdown_fastapi.authentication is working.")
+except Exception as e:
+    print("jwtdown_fastapi.authentication is not working. Error:", e)
 
 class MyAuthenticator(Authenticator):
     def __init__(self, signing_key: str):
