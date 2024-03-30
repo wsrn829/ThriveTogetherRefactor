@@ -107,32 +107,6 @@ const useAuthActions = () => {
     }
   };
 
-  // // Function to log in and set token
-  // const login = async (username: string, password: string) => {
-  //   try {
-  //     const url = `${baseUrl}/token`;
-  //     const form = new FormData();
-  //     form.append("username", username);
-  //     form.append("password", password);
-  //     const response = await fetch(url, {
-  //       method: "post",
-  //       credentials: "include",
-  //       body: form,
-  //     });
-  //     const token = await response.json();
-  //     if (token) {
-  //       setToken(token);
-  //     } else {
-  //       throw new Error("Failed to get token after login");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error logging in:", error);
-  //     throw new Error(
-  //       "Login failed. Please check your credentials and try again."
-  //     );
-  //   }
-  // };
-
   // Function to log in and set token
   const login = async (username: string, password: string) => {
     try {
@@ -145,9 +119,9 @@ const useAuthActions = () => {
         credentials: "include",
         body: form,
       });
-      const data = await response.json();
-      if (data && data.access_token) {
-        setToken(data.access_token);
+      const token = await response.json();
+      if (token) {
+        setToken(token);
       } else {
         throw new Error("Failed to get token after login");
       }
