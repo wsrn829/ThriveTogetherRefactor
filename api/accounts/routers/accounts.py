@@ -12,6 +12,7 @@ from api.authenticator import authenticator
 from jose import jwt
 from fastapi.security import OAuth2PasswordBearer
 from typing import Optional, Union
+from pydantic import BaseModel
 
 from ..queries.accounts import (
     AccountIn,
