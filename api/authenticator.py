@@ -1,29 +1,29 @@
 import os
 from fastapi import Depends, APIRouter
 from jwtdown_fastapi.authentication import Authenticator
-from datetime import timedelta
+# from datetime import timedelta
 from api.accounts.queries.accounts import AccountQueries
 from api.accounts.models import AccountOut, AccountOutWithPassword
 
-# class TestAuthenticator(Authenticator):
-#     def __init__(self, key):
-#         super().__init__(key)
+class TestAuthenticator(Authenticator):
+    def __init__(self, key):
+        super().__init__(key)
 
-#     async def get_account_data(self, username: str):
-#         pass
+    async def get_account_data(self, username: str):
+        pass
 
-#     def get_account_getter(self):
-#         pass
+    def get_account_getter(self):
+        pass
 
-#     def get_hashed_password(self, account):
-#         pass
+    def get_hashed_password(self, account):
+        pass
 
-# # Try to create an instance of TestAuthenticator
-# try:
-#     authenticator = TestAuthenticator(os.environ['SIGNING_KEY'])
-#     print("jwtdown_fastapi.authentication is working.")
-# except Exception as e:
-#     print("jwtdown_fastapi.authentication is not working. Error:", e)
+# Try to create an instance of TestAuthenticator
+try:
+    authenticator = TestAuthenticator(os.environ['SIGNING_KEY'])
+    print("jwtdown_fastapi.authentication is working.")
+except Exception as e:
+    print("jwtdown_fastapi.authentication is not working. Error:", e)
 
 class MyAuthenticator(Authenticator):
     def __init__(self, signing_key: str):
@@ -56,11 +56,11 @@ class MyAuthenticator(Authenticator):
         return account.username, AccountOut(**account.dict())
 
 
-two_hours = timedelta(hours=2)
+# two_hours = timedelta(hours=2)
 
 authenticator = MyAuthenticator(
-    os.environ["SIGNING_KEY"],
-    exp=two_hours,
+    os.environ["SIGNING_KEY"]
+    # exp=two_hours,
 )
 
 router = APIRouter()
