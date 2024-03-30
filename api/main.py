@@ -1,7 +1,7 @@
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
 import os
-from dotenv import load_dotenv
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from dotenv import dotenv_values
 
 import api.authenticator
 from api.messages.routers import messages
@@ -11,19 +11,22 @@ from api.peer_requests.routers import peer_requests
 from api.matching.routers import matching
 from api.tags.routers import tags
 
-# Initialize environment variables
-load_dotenv()
+# Load environment variables from .env file
+env_vars = dotenv_values()
 
 # Import FastAPI app and security scheme
 app = FastAPI()
 
+# Get the CORS host from environment variables with a default value
+cors_host = env_vars.get("CORS_HOST", "http://localhost:3000")
+
+# Add localhost:3000 to the list of allowed origins
+allow_origins = [cors_host, "http://localhost:3000"]
+
 # CORS Middleware configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        # os.environ.get("CORS_HOST", "http://localhost:3000"),
-        "*",  # Allow all origins
-    ],
+    allow_origins=allow_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
