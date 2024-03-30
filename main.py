@@ -1,6 +1,6 @@
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
 import os
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 
 from api.authenticator import authenticator
@@ -17,10 +17,16 @@ load_dotenv()
 # Import FastAPI app and security scheme
 app = FastAPI()
 
+# Get the CORS host from the environment variables
+cors_host = os.getenv("CORS_HOST")
+
+# Add localhost:3000 to the list of allowed origins
+allow_origins = [cors_host, "http://localhost:3000"]
+
 # CORS Middleware configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://thrivetogether.netlify.app"],
+    allow_origins=allow_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
