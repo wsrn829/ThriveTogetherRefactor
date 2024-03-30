@@ -4,18 +4,7 @@ from jwtdown_fastapi.authentication import Authenticator
 # from datetime import timedelta
 from api.accounts.queries.accounts import AccountQueries
 from api.accounts.models import AccountOut, AccountOutWithPassword
-from pydantic import BaseModel
-from typing import Union
 
-class AccountForm(BaseModel):
-    username: str
-    password: str
-
-class AccountToken(Token):
-    account: AccountOut
-
-class HttpError(BaseModel):
-    detail: str
 
 class MyAuthenticator(Authenticator):
     def __init__(self, signing_key: str):
@@ -57,5 +46,4 @@ authenticator = MyAuthenticator(
 
 router = APIRouter()
 
-# Export the authenticator and router
-__all__ = ["authenticator", "router"]
+router.include_router(authenticator.router)
