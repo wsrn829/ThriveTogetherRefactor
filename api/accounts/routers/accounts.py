@@ -63,10 +63,14 @@ async def create_account(
             response_model=AccountOut
             )
 async def get_account_info(
+    request: Request,
     account_id: int,
     accounts: AccountQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
+    # Log the Authorization header
+    print(request.headers.get('Authorization'))
+    print(account_data)
     account = accounts.get_account_info(account_id)
     if not account:
         raise HTTPException(
