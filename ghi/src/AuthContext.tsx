@@ -119,9 +119,9 @@ const useAuthActions = () => {
         credentials: "include",
         body: form,
       });
-      const responseJson = await response.json();
-      if (responseJson && responseJson.access_token) {
-        setToken(responseJson.access_token);
+      const token = await response.json();
+      if (token) {
+        setToken(token);
       } else {
         throw new Error("Failed to get token after login");
       }
