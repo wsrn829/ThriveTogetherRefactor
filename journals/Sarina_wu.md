@@ -288,3 +288,11 @@ Implementing SSO involves changes on both the frontend (to handle the SSO proces
 - First time seeing the actual token appearing in the console after login today, which is exciting. This not only means the backend library is working so that I don't have to implement a new one at the moment, but also means the AuthContext.tsx file I added is functioning.
 
 - By now, I have completed two of three main tasks: connecting database and retrieving token after login. Only remaining thing is to adjust each feature's frontend as well as backend code to ensure the retrieved token and other data is being returned to the server for validation in the correct format. Seems promising though.
+
+## 03/29/2024
+
+- Tried to debug 401 unauthorized error and found token suddenly disappeared. I was so scared that I changed the code back.
+
+## 03/30/2024
+
+- After hours of work, the error changed from 401 unauthorized to 403 forbidden. I don't even know which is a better error (or if they're equally worse).

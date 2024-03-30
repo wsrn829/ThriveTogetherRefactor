@@ -39,10 +39,14 @@ async def get_current_account_data(token: str = Depends(oauth2_scheme)) -> Optio
     JWT_SECRET = os.getenv("SIGNING_KEY")
     JWT_ALGORITHM = os.getenv("JWT_ALGORITHM")
 
+    print(f"Token: {token}")  # Print the token
+
+
     try:
         # Decode the token
         payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
-    except jwt.JWTError:
+    except jwt.JWTError as e:
+        print(f"JWTError: {e}")  # Print any errors during decoding
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Could not validate credentials",
