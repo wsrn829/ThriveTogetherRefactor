@@ -4,26 +4,18 @@ from jwtdown_fastapi.authentication import Authenticator
 # from datetime import timedelta
 from api.accounts.queries.accounts import AccountQueries
 from api.accounts.models import AccountOut, AccountOutWithPassword
+from pydantic import BaseModel
+from typing import Union
 
-class TestAuthenticator(Authenticator):
-    def __init__(self, key):
-        super().__init__(key)
+class AccountForm(BaseModel):
+    username: str
+    password: str
 
-    async def get_account_data(self, username: str):
-        pass
+class AccountToken(Token):
+    account: AccountOut
 
-    def get_account_getter(self):
-        pass
-
-    def get_hashed_password(self, account):
-        pass
-
-# Try to create an instance of TestAuthenticator
-try:
-    authenticator = TestAuthenticator(os.environ['SIGNING_KEY'])
-    print("jwtdown_fastapi.authentication is working.")
-except Exception as e:
-    print("jwtdown_fastapi.authentication is not working. Error:", e)
+class HttpError(BaseModel):
+    detail: str
 
 class MyAuthenticator(Authenticator):
     def __init__(self, signing_key: str):
@@ -65,4 +57,5 @@ authenticator = MyAuthenticator(
 
 router = APIRouter()
 
-router.include_router(authenticator.router)
+# Export the authenticator and router
+__all__ = ["authenticator", "router"]

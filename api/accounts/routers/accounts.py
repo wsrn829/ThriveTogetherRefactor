@@ -65,7 +65,7 @@ async def create_account(
 async def get_account_info(
     account_id: int,
     accounts: AccountQueries = Depends(),
-    account_data: dict = Depends(authenticator.try_get_current_account_data),
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     account = accounts.get_account_info(account_id)
     if not account:
