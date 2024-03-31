@@ -295,5 +295,17 @@ Implementing SSO involves changes on both the frontend (to handle the SSO proces
 
 ## 03/30/2024
 
-- OMG. After a whole day (or more), at 3:50 AM, I finally fixed the 401/403 error, which turned out to be a missing column in the database but included in the models and backend queries...I simply removed that field from the backend, and now everything is showing up for the profile feature. I'm too sleepy to be happy now, but I will be tomorrow though.
+- After a whole day (or more), I finally fixed the 401/403 error, which turned out to be a missing column in the database but included in the models and backend queries. I simply removed that field from the backend, and now everything is showing up for the profile feature.
+  
+## 03/31/2024
+
+- This is probably my final journal update for this project. After graduation, I was asked about this project during every interview I attended. I'm deeply grateful for the assistance I received from Amanda, Tanner, Chen, and my mentor on various aspects of this project last November and December. Their support was invaluable, even though most of them were not job searching or using this project on their resumes. I'm also greatly appreciative of Sam for inviting me to join his team, where I learned even more. Without their help, I wouldn't have been able to include this project on my resume so quickly. This month, I worked solo on this project and accomplished the following:
+
+  - Rebuilt the Postgres database and refined the database schemas by updating column names and adding Foreign Keys.
+
+  - Set up CI/CD pipelines, deployed the project on Heroku (backend) and Netlify (frontend), and connected it to a Postgresql database running on Heroku.
+
+  - Implemented OAuth2 with Password and Bearer with JWT tokens for backend authentication, and managed frontend authentication using React's useContext hook, including authentication actions such as login, logout, and registration, and handling token-based authentication for API requests.
+
+  - Revamped the landing page design and applied responsive styling for seamless display across desktop and mobile platforms.
 
