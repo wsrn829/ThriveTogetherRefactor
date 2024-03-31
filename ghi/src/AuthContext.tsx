@@ -34,7 +34,7 @@ export const getAccessToken = async (
 };
 
 // Define the context type for authentication
-export type AuthContextType = {
+export declare type AuthContextType = {
   token: string | null;
   setToken: Dispatch<SetStateAction<string | null>>;
   baseUrl: string;
@@ -108,7 +108,10 @@ const useAuthActions = () => {
   };
 
   // Function to log in and set token
-  const login = async (username: string, password: string) => {
+  const login = async (
+    username: string,
+    password: string
+  ): Promise<Boolean> => {
     try {
       const url = `${baseUrl}/token`;
       const form = new FormData();
@@ -122,6 +125,7 @@ const useAuthActions = () => {
       const token = await response.json();
       if (token) {
         setToken(token);
+        return true; // Login was successful
       } else {
         throw new Error("Failed to get token after login");
       }
@@ -138,7 +142,7 @@ const useAuthActions = () => {
     userData: RegistrationData,
     url: string,
     method = "POST"
-  ) => {
+  ): Promise<Boolean> => {
     try {
       const response = await fetch(url, {
         method,
@@ -149,6 +153,7 @@ const useAuthActions = () => {
       });
       if (response.ok) {
         await login(userData.email, userData.password);
+        return true; // Registration was successful
       } else {
         throw new Error("Failed to register user");
       }
@@ -163,17 +168,17 @@ const useAuthActions = () => {
     url: string,
     method = "GET",
     options: object = {}
-  ): Promise<any> => {
+  ): Promise<{ data: any; ok: boolean }> => {
     try {
       const response = await fetch(url, {
         method,
         credentials: "include",
         ...options,
       });
-      return [await response.json(), response.ok];
+      return { data: await response.json(), ok: response.ok };
     } catch (error) {
       console.error("Error fetching data with cookie:", error);
-      return [null, false];
+      throw error;
     }
   };
 
@@ -186,7 +191,7 @@ const useAuthActions = () => {
   ): Promise<any> => {
     if (!token) {
       console.error("Token is not available");
-      return [null, false];
+      return { data: null, ok: false };
     }
     console.log("Token:", token);
     try {
@@ -198,10 +203,10 @@ const useAuthActions = () => {
         },
         ...options,
       });
-      return [await response.json(), response.ok];
+      return { data: await response.json(), ok: response.ok };
     } catch (error) {
       console.error("Error fetching data with token:", error);
-      return [null, false];
+      return { data: null, ok: false };
     }
   };
 

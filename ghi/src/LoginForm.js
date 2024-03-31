@@ -1,7 +1,7 @@
 // import useToken from "@galvanize-inc/jwtdown-for-react";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import useAuthActions from "./AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");

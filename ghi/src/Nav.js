@@ -1,38 +1,48 @@
 import logo from "./images/thrivetogether2.png";
-import useToken from "@galvanize-inc/jwtdown-for-react";
+// import useToken from "@galvanize-inc/jwtdown-for-react";
+import useAuthActions from "./AuthContext";
 import { NavLink, Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Nav() {
-  const [userData, setUserData] = useState({});
-  const { logout, token } = useToken();
+  // const [userData, setUserData] = useState({});
+  // const { logout, token } = useToken();
+  const { logout, token } = useAuthActions();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    async function getUserData() {
-      let url = `${process.env.REACT_APP_API_HOST}/token`;
-      let response = await fetch(url, {
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      let data = await response.json();
+  // useEffect(() => {
+  //   async function getUserData() {
+  //     let url = `${process.env.REACT_APP_API_HOST}/token`;
+  //     let response = await fetch(url, {
+  //       credentials: "include",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+  //     let data = await response.json();
 
-      if (response.ok) {
-        if (data && data.account) {
-          setUserData(data.account);
-        } else {
-          console.log(
-            "User data could not be fetched: 'account' property not found"
-          );
-        }
-      } else {
-        console.log("User data could not be fetched: API request failed");
-      }
-    }
-    getUserData();
-  }, [token]);
+  //     if (response.ok) {
+  //       if (data && data.account) {
+  //         setUserData(data.account);
+  //       } else {
+  //         console.log(
+  //           "User data could not be fetched: 'account' property not found"
+  //         );
+  //       }
+  //     } else {
+  //       console.log("User data could not be fetched: API request failed");
+  //     }
+  //   }
+  //   getUserData();
+  // }, [token]);
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    logout();
+    navigate("/");
+  };
 
   return (
     <>
@@ -85,12 +95,12 @@ function Nav() {
                   {token && (
                     <>
                       <li className="nav-item">
-                        <div className="nav-link" style={{ width: "250px" }}>
+                        {/* <div className="nav-link" style={{ width: "250px" }}>
                           Welcome, {userData.name}
-                        </div>
+                        </div> */}
                       </li>
                       <li className="nav-item">
-                        <button className="nav-link" onClick={logout}>
+                        <button className="nav-link" onClick={handleLogout}>
                           Logout
                         </button>
                       </li>

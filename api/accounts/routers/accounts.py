@@ -1,4 +1,3 @@
-import os
 from fastapi import (
     Depends,
     HTTPException,
@@ -8,10 +7,8 @@ from fastapi import (
     Request,
 )
 from jwtdown_fastapi.authentication import Token
-from api.authenticator import authenticator
-from jose import jwt
-from fastapi.security import OAuth2PasswordBearer
-from typing import Optional, Union
+from authenticator import authenticator
+
 from pydantic import BaseModel
 
 from ..queries.accounts import (
@@ -19,43 +16,28 @@ from ..queries.accounts import (
     AccountOut,
     AccountQueries,
     DuplicateAccountError,
-)
+    )
+
 
 class AccountForm(BaseModel):
     username: str
     password: str
 
+
 class AccountToken(Token):
     account: AccountOut
+
 
 class HttpError(BaseModel):
     detail: str
 
+
 router = APIRouter()
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-
-async def get_current_account_data(token: str = Depends(oauth2_scheme)) -> Optional[dict]:
-    JWT_SECRET = os.getenv("SIGNING_KEY")
-    JWT_ALGORITHM = os.getenv("JWT_ALGORITHM")
-
-    print(f"Token: {token}")  # Print the token
-
-
-    try:
-        # Decode the token
-        payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
-    except jwt.JWTError as e:
-        print(f"JWTError: {e}")  # Print any errors during decoding
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Could not validate credentials",
-        )
-    return payload
 
 @router.post("/api/accounts",
              tags=["Accounts"],
-             response_model=Union[AccountToken, HttpError]
+             response_model=AccountToken | HttpError
              )
 async def create_account(
     info: AccountIn,
@@ -75,19 +57,16 @@ async def create_account(
     token = await authenticator.login(response, request, form, accounts)
     return AccountToken(account=account, **token.dict())
 
+
 @router.get("/api/accounts/{account_id}",
             tags=["Accounts"],
             response_model=AccountOut
             )
 async def get_account_info(
-    request: Request,
     account_id: int,
     accounts: AccountQueries = Depends(),
-    account_data: dict = Depends(get_current_account_data),  # Use the new function here
+    # account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    # Log the Authorization header
-    print(request.headers.get('Authorization'))
-    print(account_data)
     account = accounts.get_account_info(account_id)
     if not account:
         raise HTTPException(
@@ -95,6 +74,7 @@ async def get_account_info(
             detail="Account not found",
         )
     return account
+
 
 @router.put("/api/accounts/{account_id}",
             tags=["Accounts"],
@@ -104,7 +84,7 @@ async def update_account_info(
     account_id: int,
     info: AccountOut,
     accounts: AccountQueries = Depends(),
-    account_data: dict = Depends(get_current_account_data),  # Use the new function here
+    # account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     account = accounts.get_account_info(account_id)
     if not account:
@@ -115,12 +95,13 @@ async def update_account_info(
     updated_account = accounts.update(account_id, info)
     return updated_account
 
-@router.get("/token", response_model=Union[AccountToken, None])
+
+@router.get("/token", response_model=AccountToken | None)
 async def get_token(
     request: Request,
-    account: AccountOut = Depends(authenticator.try_get_current_account_data)
-) -> Union[AccountToken, None]:
-    if account and authenticator.cookie_name in request.cookies:
+    # account: AccountOut = Depends(authenticator.try_get_current_account_data)
+) -> AccountToken | None:
+    # if account and authenticator.cookie_name in request.cookies:
         return {
             "access_token": request.cookies[authenticator.cookie_name],
             "type": "Bearer",
