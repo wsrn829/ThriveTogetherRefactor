@@ -1,7 +1,7 @@
 import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from dotenv import dotenv_values
+from dotenv import load_dotenv
 
 import api.authenticator
 from api.messages.routers import messages
@@ -12,16 +12,16 @@ from api.matching.routers import matching
 from api.tags.routers import tags
 
 # Load environment variables from .env file
-env_vars = dotenv_values()
+load_dotenv()
 
 # Import FastAPI app and security scheme
 app = FastAPI()
 
-# Get the CORS host from environment variables with a default value
-cors_host = env_vars.get("CORS_HOST", "http://localhost:3000")
+# # Get the CORS host from environment variables with a default value
+# cors_host = env_vars.get("CORS_HOST", "https://localhost:3000")
 
-# Add localhost:3000 to the list of allowed origins
-allow_origins = [cors_host, "http://localhost:3000"]
+# # Add localhost:3000 to the list of allowed origins
+# allow_origins = [cors_host, "https://localhost:3000"]
 
 # CORS Middleware configuration
 app.add_middleware(
