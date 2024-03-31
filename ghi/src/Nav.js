@@ -2,7 +2,7 @@ import logo from "./images/thrivetogether2.png";
 // import useToken from "@galvanize-inc/jwtdown-for-react";
 import useAuthActions from "./AuthContext";
 import { NavLink, Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 function Nav() {
