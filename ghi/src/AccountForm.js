@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+// import useAuthActions from "./AuthContext";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useNavigate } from "react-router-dom";
-import useAuthActions from "./AuthContext";
 
 const AccountForm = () => {
   const [username, setUsername] = useState("");
@@ -10,7 +11,8 @@ const AccountForm = () => {
   const [gender, setGender] = useState("");
   const [pronouns, setPronouns] = useState("");
   const [email, setEmail] = useState("");
-  const { register } = useAuthActions();
+  // const { register } = useAuthActions();
+  const { register } = useToken();
   const navigate = useNavigate();
 
   const handleRegistration = async (e) => {
