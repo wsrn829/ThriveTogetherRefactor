@@ -65,7 +65,7 @@ async def create_account(
 async def get_account_info(
     account_id: int,
     accounts: AccountQueries = Depends(),
-    # account_data: dict = Depends(authenticator.get_current_account_data),
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     account = accounts.get_account_info(account_id)
     if not account:
@@ -84,7 +84,7 @@ async def update_account_info(
     account_id: int,
     info: AccountOut,
     accounts: AccountQueries = Depends(),
-    # account_data: dict = Depends(authenticator.get_current_account_data),
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     account = accounts.get_account_info(account_id)
     if not account:
@@ -99,9 +99,9 @@ async def update_account_info(
 @router.get("/token", response_model=AccountToken | None)
 async def get_token(
     request: Request,
-    # account: AccountOut = Depends(authenticator.try_get_current_account_data)
+    account: AccountOut = Depends(authenticator.try_get_current_account_data)
 ) -> AccountToken | None:
-    # if account and authenticator.cookie_name in request.cookies:
+    if account and authenticator.cookie_name in request.cookies:
         return {
             "access_token": request.cookies[authenticator.cookie_name],
             "type": "Bearer",
