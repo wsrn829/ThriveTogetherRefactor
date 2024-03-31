@@ -35,7 +35,6 @@ def fake_get_current_account_data():
         banner_image="string",
         about_me="string",
         my_story="string",
-        preferences="string",
         )
 
 

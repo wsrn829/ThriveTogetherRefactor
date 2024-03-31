@@ -25,8 +25,6 @@ class AccountOut(BaseModel):
     banner_image: Optional[str]
     about_me: Optional[str]
     my_story: Optional[str]
-    preferences: Optional[str]
-
 
 class AccountOutWithPassword(AccountOut):
     hashed_password: str

@@ -43,8 +43,7 @@ class AccountQueries:
                     profile_image,
                     banner_image,
                     about_me,
-                    my_story,
-                    preferences
+                    my_story
                     FROM users
                     WHERE users.id = %s
                     """,
@@ -128,7 +127,6 @@ class AccountQueries:
                         info.banner_image,
                         info.about_me,
                         info.my_story,
-                        info.preferences,
                         id,
                     ],
                 )

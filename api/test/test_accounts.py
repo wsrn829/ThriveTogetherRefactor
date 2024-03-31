@@ -20,8 +20,6 @@ class AccountOut(BaseModel):
     banner_image: str | None
     about_me: str | None
     my_story: str | None
-    preferences: str | None
-
 
 fake_account = {
             "id": 1,
@@ -57,7 +55,6 @@ def fake_get_current_account_data():
         banner_image="string",
         about_me="string",
         my_story="string",
-        preferences="string",
         )
 
 

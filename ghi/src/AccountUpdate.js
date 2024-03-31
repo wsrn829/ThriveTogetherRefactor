@@ -14,7 +14,6 @@ const AccountUpdate = () => {
     banner_image: "",
     about_me: "",
     my_story: "",
-    preferences: "",
   });
 
   const getAccountInfo = useCallback(async () => {
@@ -206,7 +205,7 @@ const AccountUpdate = () => {
                   onChange={handleAccountInfoChange}
                 />
               </div>
-              <div className="mb-3">
+              {/* <div className="mb-3">
                 <label className="form-label">Preferences</label>
                 <input
                   type="text"
@@ -215,7 +214,7 @@ const AccountUpdate = () => {
                   value={editedAccountInfo.preferences || ""}
                   onChange={handleAccountInfoChange}
                 />
-              </div>
+              </div> */}
               <br />
               <div>
                 <div className="d-flex justify-content-center">
