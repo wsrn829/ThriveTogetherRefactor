@@ -295,4 +295,5 @@ Implementing SSO involves changes on both the frontend (to handle the SSO proces
 
 ## 03/30/2024
 
-- After hours of work, the error changed from 401 unauthorized to 403 forbidden. I don't even know which is a better error (or if they're equally worse).
+- OMG. After a whole day (or more), at 3:50 AM, I finally fixed the 401/403 error, which turned out to be a missing column in the database but included in the models and backend queries...I simply removed that field from the backend, and now everything is showing up for the profile feature. I'm too sleepy to be happy now, but I will be tomorrow though.
+
