@@ -1,6 +1,26 @@
-# Thrive Together
+# ThriveTogether 
 
-Thrive Together is your go-to app that creates a safe space for people experiencing mental health concerns to connect, find support, and mentor each other. This platform allows users to message each other safely and securely after connecting based on shared experiences.
+ThriveTogether is a comprehensive, full-stack mental health peer support application, meticulously developed by our team from inception to implementation using React, Redux Toolkit, FastAPI, OAuth2, JWT, PostgreSQL, unit testing, and CI/CD. 
+
+The journey began with brainstorming and voting on project ideas, followed by wireframing to design the UI/UX. The entire process was carried out with minimal mentorship, demonstrating our team's self-reliance and technical acumen.
+
+In this project, I accomplished the following:
+
+- Rebuilt the Postgres database and refined the database schemas by updating column names and adding Foreign Keys.
+
+- Set up CI/CD pipelines, deployed the project on Heroku (backend) and Netlify (frontend), and connected it to a Postgresql database running on Heroku.
+
+- Implemented OAuth2 with JWT tokens for backend authentication, and React's useContext hook for login, logout, registration, and fetching tokens from the API for frontend authentication.
+
+- Developed peer-adding and peer list functionalities utilizing React on the frontend and FastAPI on the backend.
+
+- Developed comprehensive unit tests to ensure the reliability and stability of the application.
+
+- Revamped the landing page design and applied responsive styling for optimal display on both desktop and mobile devices.
+
+-------------------------------------------------------------------------------
+
+ThriveTogether is your go-to app that creates a safe space for people experiencing mental health concerns to connect, find support, and mentor each other. This platform allows users to message each other safely and securely after connecting based on shared experiences.
 
 Thrive Together - connecting like-minded folks.
 
