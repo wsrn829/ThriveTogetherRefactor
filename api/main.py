@@ -22,11 +22,17 @@ app = FastAPI()
 
 # # Add localhost:3000 to the list of allowed origins
 # allow_origins = [cors_host, "https://localhost:3000"]
-
+origins = [
+    "https://localhost:3000",
+    "http://localhost:3000",
+    "http://localhost",
+    "https://thrivetogether.netlify.app",
+    "*",
+]
 # CORS Middleware configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://thrivetogether.netlify.app", "http://localhost:3000"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
