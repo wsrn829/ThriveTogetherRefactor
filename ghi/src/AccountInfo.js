@@ -1,38 +1,3 @@
-// import React, { useState, useEffect, useCallback } from "react";
-// import { Link } from "react-router-dom";
-// import useAuthActions from "./AuthContext";
-
-// const AccountInfo = () => {
-//   const [userId, setUserId] = useState("");
-//   const [accountInfo, setAccountInfo] = useState("");
-//   const { fetchWithToken } = useAuthActions();
-
-//   const getAccountInfo = useCallback(async () => {
-//     try {
-//       let url = `${process.env.REACT_APP_API_HOST}/api/accounts/${userId}`;
-//       let [data, responseOk] = await fetchWithToken(url, "GET");
-
-//       if (responseOk) {
-//         setAccountInfo(data);
-//       } else {
-//         console.log("Account info could not be found");
-//       }
-//     } catch (error) {
-//       console.error("Error fetching account info:", error);
-//     }
-//   }, [userId, fetchWithToken]);
-
-//   useEffect(() => {
-//     if (userId) {
-//       getAccountInfo();
-//     }
-//   }, [userId, getAccountInfo]);
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     await getAccountInfo();
-//   };
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import useAuthActions from "./AuthContext";
@@ -51,7 +16,7 @@ const AccountInfo = () => {
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // Add this line
+          Authorization: `Bearer ${token}`,
         },
       });
       let data = await response.json();

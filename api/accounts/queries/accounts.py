@@ -112,7 +112,6 @@ class AccountQueries:
                         banner_image = %s,
                         about_me = %s,
                         my_story = %s,
-                        preferences = %s
                     WHERE id = %s
                     RETURNING *
                     """,
@@ -172,7 +171,6 @@ class AccountQueries:
                 "banner_image",
                 "about_me",
                 "my_story",
-                "preferences",
             ]
             for i, column in enumerate(description):
                 if column.name in account_fields:

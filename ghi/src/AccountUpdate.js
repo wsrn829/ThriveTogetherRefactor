@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
+import useAuthActions from "./AuthContext";
 
 const AccountUpdate = () => {
   const [accountInfo, setAccountInfo] = useState({});
   const [userData, setUserData] = useState("");
+  const { token } = useAuthActions();
   const [editedAccountInfo, setEditedAccountInfo] = useState({
     username: "",
     name: "",
@@ -21,6 +23,9 @@ const AccountUpdate = () => {
       let url = `${process.env.REACT_APP_API_HOST}/api/accounts/${userData}`;
       let response = await fetch(url, {
         credentials: "include",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       let data = await response.json();
 
@@ -39,6 +44,9 @@ const AccountUpdate = () => {
       let url = `${process.env.REACT_APP_API_HOST}/token`;
       let response = await fetch(url, {
         credentials: "include",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       let data = await response.json();
 
@@ -69,6 +77,7 @@ const AccountUpdate = () => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(editedAccountInfo),
         credentials: "include",
