@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PeerButton from "./PeerButton";
-import useToken from "@galvanize-inc/jwtdown-for-react";
+import useAuthActions from "./AuthContext";
 
 const MatchView = () => {
   const [matches, setMatches] = useState();
   const [userData, setUserData] = useState("");
   const [userTags, setUserTags] = useState([]);
   const [tagToSearch, setTagToSearch] = useState("");
-  const { token } = useToken();
+  const { token } = useAuthActions();
   let carouselCounter = 0;
 
   useEffect(() => {

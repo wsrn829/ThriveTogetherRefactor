@@ -63,7 +63,7 @@ const AccountInfo = () => {
             <h5>Account Information: {userId}</h5>
             <pre>{JSON.stringify(accountInfo, null, 2)}</pre>
             <br></br>
-            <Link to={`/update`}>
+            <Link to={`/update/${userId}`}>
               <div>
                 <input
                   className="btn btn-primary"

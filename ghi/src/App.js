@@ -60,7 +60,7 @@ function MainApp() {
             <Route exact path="/peer" element={<PeerButton />}></Route>
             <Route exact path="/matches" element={<MatchView />}></Route>
             <Route exact path="/info" element={<AccountInfo />}></Route>
-            <Route exact path="/update" element={<AccountUpdate />}></Route>
+            <Route exact path="/update/:id" element={<AccountUpdate />}></Route>
             <Route exact path="/tags" element={<EditTags />}></Route>
             <Route exact path="/requests" element={<PeerRequestList />}></Route>
           </Routes>

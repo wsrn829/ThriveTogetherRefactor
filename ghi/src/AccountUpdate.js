@@ -1,9 +1,12 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import useAuthActions from "./AuthContext";
+// import { jwtDecode } from "jwt-decode";
 
 const AccountUpdate = () => {
+  const { id } = useParams();
   const [accountInfo, setAccountInfo] = useState({});
-  const [userData, setUserData] = useState("");
+  // const [userData, setUserData] = useState("");
   const { token } = useAuthActions();
   const [editedAccountInfo, setEditedAccountInfo] = useState({
     username: "",
@@ -18,61 +21,104 @@ const AccountUpdate = () => {
     my_story: "",
   });
 
-  const getAccountInfo = useCallback(async () => {
-    try {
-      let url = `${process.env.REACT_APP_API_HOST}/api/accounts/${userData}`;
-      let response = await fetch(url, {
-        credentials: "include",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      let data = await response.json();
-
-      if (response.ok) {
-        setAccountInfo(data);
-      } else {
-        console.log("Account info could not be found");
-      }
-    } catch (error) {
-      console.error("Error fetching account info:", error);
-    }
-  }, [userData]);
-
+  // eslint-disable-next-line
   useEffect(() => {
-    async function getUserData() {
-      let url = `${process.env.REACT_APP_API_HOST}/token`;
-      let response = await fetch(url, {
-        credentials: "include",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      let data = await response.json();
+    async function getAccountInfo() {
+      try {
+        let url = `${process.env.REACT_APP_API_HOST}/api/accounts/${id}`;
+        let response = await fetch(url, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          credentials: "include",
+        });
+        let data = await response.json();
 
-      if (response.ok) {
-        setUserData(data.account.id);
-      } else {
-        console.log("User data could not be fetched");
+        if (response.ok) {
+          setAccountInfo(data);
+          setEditedAccountInfo(data);
+        } else {
+          console.log("Account info could not be found");
+        }
+      } catch (error) {
+        console.error("Error fetching account info:", error);
       }
     }
 
-    getUserData();
-  }, []);
-
-  useEffect(() => {
-    if (accountInfo) {
-      setEditedAccountInfo({ ...accountInfo });
-    }
-  }, [accountInfo]);
-
-  useEffect(() => {
     getAccountInfo();
-  }, [userData, getAccountInfo]);
+  }, [id, token]);
+
+  // ... rest of your component
+
+  // const getAccountInfo = useCallback(async () => {
+  //   try {
+  //     if (token) {
+  //       const decoded = jwtDecode(token);
+  //       console.log(decoded);
+  //       const userId = decoded.account.id;
+  //       setUserData(userId);
+  //     }
+  //     let url = `${process.env.REACT_APP_API_HOST}/api/accounts/${id}`;
+  //     let response = await fetch(url, {
+  //       // method: "GET",
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //         "Content-Type": "application/json",
+  //       },
+  //       credentials: "include",
+  //     });
+  //     console.log("response", response);
+  //     let data = await response.json();
+
+  //     if (response.ok) {
+  //       setAccountInfo(data);
+  //     } else {
+  //       console.log("Account info could not be found");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching account info:", error);
+  //   }
+  // }, [userData, token]);
+
+  // useEffect(() => {
+  //   async function getUserData() {
+  //     let url = `${process.env.REACT_APP_API_HOST}/token`;
+  //     let response = await fetch(url, {
+  //       credentials: "include",
+  //     });
+  //     let data = await response.json();
+  //     console.log("data", data);
+
+  //     if (response.ok) {
+  //       setUserData(data.account.id);
+  //     } else {
+  //       console.log("User data could not be fetched");
+  //     }
+  //   }
+
+  //   getUserData();
+  // }, []);
+
+  // useEffect(() => {
+  //   if (accountInfo) {
+  //     setEditedAccountInfo({ ...accountInfo });
+  //   }
+  // }, [accountInfo]);
+
+  // useEffect(() => {
+  //   getAccountInfo();
+  // }, [userData, getAccountInfo]);
 
   async function updateAccountInfo() {
     try {
-      let url = `${process.env.REACT_APP_API_HOST}/api/accounts/${userData}`;
+      // if (token) {
+      //   const decoded = jwtDecode(token);
+      //   console.log(decoded);
+      //   const userId = decoded.account.id;
+      //   setUserData(userId);
+      // }
+      let url = `${process.env.REACT_APP_API_HOST}/api/accounts/${id}`;
       const response = await fetch(url, {
         method: "PUT",
         headers: {
@@ -102,7 +148,7 @@ const AccountUpdate = () => {
   const handleUpdateSubmit = async (event) => {
     event.preventDefault();
     await updateAccountInfo();
-    getAccountInfo();
+    // getAccountInfo();
   };
 
   return (
