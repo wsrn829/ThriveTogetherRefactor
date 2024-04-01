@@ -27,14 +27,13 @@ origins = [
     "http://localhost:3000",
     "http://localhost",
     "https://thrivetogether.netlify.app",
-    "*",
 ]
 # CORS Middleware configuration
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["POST", "GET", "OPTIONS", "PUT", "DELETE", "PATCH"],
     allow_headers=["*"],
 )
 
