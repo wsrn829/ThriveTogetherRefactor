@@ -10,6 +10,8 @@ In this project, I accomplished the following:
 
 - Set up CI/CD pipelines, deployed the project on Heroku (backend) and Netlify (frontend), and connected it to a Postgresql database running on Heroku.
 
+- Implemented Redux Toolkit and Redux Thunk for efficient central state management and handling of asynchronous operations.
+
 - Implemented OAuth2 with JWT tokens for backend authentication, and React's useContext hook for login, logout, registration, and fetching tokens from the API for frontend authentication.
 
 - Developed peer-adding and peer list functionalities utilizing React on the frontend and FastAPI on the backend.
@@ -22,7 +24,7 @@ In this project, I accomplished the following:
 
 ThriveTogether is your go-to app that creates a safe space for people experiencing mental health concerns to connect, find support, and mentor each other. This platform allows users to message each other safely and securely after connecting based on shared experiences.
 
-Thrive Together - connecting like-minded folks.
+ThriveTogether -- connecting like-minded folks.
 
 
 ## Developed by:
