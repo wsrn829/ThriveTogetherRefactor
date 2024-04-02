@@ -60,7 +60,7 @@ class AccountQueries:
             self,
             info: AccountIn,
             hashed_password: str
-            ) -> AccountOut:
+            ) -> AccountOutWithPassword:
         username = None
         with pool.connection() as conn:
             with conn.cursor() as cur:
@@ -90,25 +90,9 @@ class AccountQueries:
                     ],
                 )
 
-                if cur.rowcount == 0:
-                    raise Exception("Failed to create user")
-
-                user_id = cur.fetchone()[0]
-
-        # return self.get_account(info.username)
-        return AccountOut(
-            id=user_id,
-            username=info.username,
-            name=info.name,
-            age=info.age,
-            gender=info.gender,
-            pronouns=info.pronouns,
-            email=info.email,
-            profile_image=None,
-            banner_image=None,
-            about_me=None,
-            my_story=None
-        )
+            if cur.rowcount == 0:
+                raise Exception("Failed to create user")
+        return self.get_account(info.username)
 
     def update(self, id: int, info: AccountOut) -> AccountOut:
         with pool.connection() as conn:

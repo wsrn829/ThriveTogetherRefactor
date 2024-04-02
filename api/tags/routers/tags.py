@@ -25,17 +25,18 @@ async def get_all_tags(
 
 
 @router.get(
-    "/api/tags/{username}",
+    "/api/tags/{id}",
     tags=["Tags"],
     response_model=Union[TagsOut, HttpError],
 )
 async def get_user_tags(
+    id: int,
     username: str,
     response: Response,
     queries: TagQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    record = queries.get_user_tags(username)
+    record = queries.get_user_tags(id)
     if record is None:
         response.status_code = 404
         return {"detail": "Invalid request."}
