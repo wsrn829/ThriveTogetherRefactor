@@ -33,6 +33,11 @@ const MatchView = () => {
 
   useEffect(() => {
     async function getUserTags() {
+      if (!token) {
+        console.log("Token is not available");
+        return;
+      }
+
       let url = `${process.env.REACT_APP_API_HOST}/api/tags/${"username"}`;
       let response = await fetch(url, {
         credentials: "include",
@@ -50,7 +55,7 @@ const MatchView = () => {
     }
 
     getUserTags();
-  }, [userData, token]);
+  }, [token]);
 
   async function handleSubmit(event) {
     event.preventDefault();

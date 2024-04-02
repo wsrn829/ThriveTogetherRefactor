@@ -1,52 +1,65 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchPeers } from "./peersActions";
 
 function PeerList() {
-  const [peer, setPeer] = useState([]);
-  const [peerData, setPeerData] = useState("");
-  const [peerDataLoaded, setPeerDataLoaded] = useState(false);
+  const dispatch = useDispatch();
+  const { peers, status, error } = useSelector((state) => state.peers);
+  // const [peer, setPeer] = useState([]);
+  // const [peerData, setPeerData] = useState("");
+  // const [peerDataLoaded, setPeerDataLoaded] = useState(false);
 
   useEffect(() => {
-    async function getPeerData() {
-      const url = `${process.env.REACT_APP_API_HOST}/token`;
-      const response = await fetch(url, {
-        credentials: "include",
-      });
-      const data = await response.json();
+    dispatch(fetchPeers());
+  }, [dispatch]);
 
-      if (response.ok) {
-        setPeerData(data.account);
-        setPeerDataLoaded(true);
-      } else {
-        console.log("Peer data could not be fetched");
-      }
-    }
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  } else if (status === "failed") {
+    return <div>Error: {error}</div>;
+  }
+  // useEffect(() => {
+  //   async function getPeerData() {
+  //     const url = `${process.env.REACT_APP_API_HOST}/token`;
+  //     const response = await fetch(url, {
+  //       credentials: "include",
+  //     });
+  //     const data = await response.json();
 
-    getPeerData();
-  }, [peerDataLoaded]);
+  //     if (response.ok) {
+  //       setPeerData(data.account);
+  //       setPeerDataLoaded(true);
+  //     } else {
+  //       console.log("Peer data could not be fetched");
+  //     }
+  //   }
 
-  const LoadPeers = useCallback(async () => {
-    if (!peerDataLoaded || !peerData) {
-      return;
-    } else {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_HOST}/api/peers/${peerData["id"]}`,
-        {
-          credentials: "include",
-        }
-      );
+  //   getPeerData();
+  // }, [peerDataLoaded]);
 
-      if (response.ok) {
-        const data = await response.json();
-        setPeer(data);
-      } else {
-        console.log("Error! Peer not found.");
-      }
-    }
-  }, [peerData, peerDataLoaded]);
+  // const LoadPeers = useCallback(async () => {
+  //   if (!peerDataLoaded || !peerData) {
+  //     return;
+  //   } else {
+  //     const response = await fetch(
+  //       `${process.env.REACT_APP_API_HOST}/api/peers/${peerData["id"]}`,
+  //       {
+  //         credentials: "include",
+  //       }
+  //     );
 
-  useEffect(() => {
-    LoadPeers();
-  }, [peerData, LoadPeers]);
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       setPeer(data);
+  //     } else {
+  //       console.log("Error! Peer not found.");
+  //     }
+  //   }
+  // }, [peerData, peerDataLoaded]);
+
+  // useEffect(() => {
+  //   LoadPeers();
+  // }, [peerData, LoadPeers]);
 
   return (
     <div className="content-container rounded-edges">
@@ -60,7 +73,7 @@ function PeerList() {
           </tr>
         </thead>
         <tbody>
-          {peer.map((peerData) => {
+          {peers.map((peerData) => {
             return (
               <tr key={peerData.id + peerData.peer_name}>
                 <td>{peerData.peer_name}</td>
