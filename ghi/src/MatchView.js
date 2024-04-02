@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PeerButton from "./PeerButton";
 import useAuthActions from "./AuthContext";
+// import { useParams } from "react-router-dom";
 
 const MatchView = () => {
   const [matches, setMatches] = useState();
@@ -9,6 +10,7 @@ const MatchView = () => {
   const [userTags, setUserTags] = useState([]);
   const [tagToSearch, setTagToSearch] = useState("");
   const { token } = useAuthActions();
+  // const { id } = useParams();
   let carouselCounter = 0;
 
   useEffect(() => {
@@ -31,9 +33,10 @@ const MatchView = () => {
 
   useEffect(() => {
     async function getUserTags() {
-      let url = `${process.env.REACT_APP_API_HOST}/api/tags/${userData["username"]}`;
+      let url = `${process.env.REACT_APP_API_HOST}/api/tags/${"username"}`;
       let response = await fetch(url, {
         credentials: "include",
+        Authorization: `Bearer ${token}`,
       });
       let data = await response.json();
 
@@ -52,6 +55,7 @@ const MatchView = () => {
     let url = `${process.env.REACT_APP_API_HOST}/api/matches/${tagToSearch}`;
     let response = await fetch(url, {
       credentials: "include",
+      Authorization: `Bearer ${token}`,
     });
     let data = await response.json();
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import useAuthActions from "./AuthContext";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 const EditTags = () => {
   const [userData, setUserData] = useState("");
@@ -9,7 +9,7 @@ const EditTags = () => {
   const [addableTags, setAddableTags] = useState([]);
   const [tagToAdd, setTagToAdd] = useState("");
   const { token } = useAuthActions();
-  const { id } = useParams();
+  // const { id } = useParams();
 
   const getAddableTags = useCallback(() => {
     let difference = allTags;
@@ -26,9 +26,10 @@ const EditTags = () => {
   }, [userTags, allTags]);
 
   const getUserTags = useCallback(async () => {
-    let url = `${process.env.REACT_APP_API_HOST}/api/tags/${id}`;
+    let url = `${process.env.REACT_APP_API_HOST}/api/tags/${userData["username"]}`;
     let response = await fetch(url, {
       credentials: "include",
+      Authorization: `Bearer ${token}`,
     });
     let data = await response.json();
 
@@ -37,7 +38,7 @@ const EditTags = () => {
     } else {
       console.log("Error! Tags not found.");
     }
-  }, [userData]);
+  }, [userData, token]);
 
   useEffect(() => {
     async function getUserData() {

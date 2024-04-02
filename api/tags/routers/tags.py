@@ -10,7 +10,7 @@ router = APIRouter()
 @router.get(
     "/api/tags",
     tags=["Tags"],
-    response_model=Union[AllTagsOut, HttpError],
+    response_model=AllTagsOut | HttpError,
 )
 async def get_all_tags(
     response: Response,
@@ -25,18 +25,17 @@ async def get_all_tags(
 
 
 @router.get(
-    "/api/tags/{id}",
+    "/api/tags/{username}",
     tags=["Tags"],
-    response_model=Union[TagsOut, HttpError],
+    response_model=TagsOut | HttpError,
 )
 async def get_user_tags(
-    id: int,
     username: str,
     response: Response,
     queries: TagQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    record = queries.get_user_tags(id)
+    record = queries.get_user_tags(username)
     if record is None:
         response.status_code = 404
         return {"detail": "Invalid request."}
