@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import useAuthActions from "./AuthContext";
 
 function PeerButton(props) {
   const [addSuccess, setAddSuccess] = useState(false);
+  const { token } = useAuthActions();
 
   async function handleAddPeer(event) {
     event.preventDefault();
@@ -13,12 +15,13 @@ function PeerButton(props) {
       sender_name: props.senderName,
       recipient_name: props.recipientName,
     };
-    const peerUrl = `${process.env.REACT_APP_API_HOST}/api/connections/create`;
+    const peerUrl = `${process.env.REACT_APP_API_HOST}/api/requests/create`;
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       credentials: "include",
     };

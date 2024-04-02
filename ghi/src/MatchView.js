@@ -13,23 +13,23 @@ const MatchView = () => {
   // const { id } = useParams();
   let carouselCounter = 0;
 
-  useEffect(() => {
-    async function getUserData() {
-      let url = `${process.env.REACT_APP_API_HOST}/token`;
-      let response = await fetch(url, {
-        credentials: "include",
-      });
-      let data = await response.json();
+  // useEffect(() => {
+  //   async function getUserData() {
+  //     let url = `${process.env.REACT_APP_API_HOST}/token`;
+  //     let response = await fetch(url, {
+  //       credentials: "include",
+  //     });
+  //     let data = await response.json();
 
-      if (response.ok) {
-        setUserData(data.account);
-      } else {
-        console.log("User data could not be fetched");
-      }
-    }
+  //     if (response.ok) {
+  //       setUserData(data.account);
+  //     } else {
+  //       console.log("User data could not be fetched");
+  //     }
+  //   }
 
-    getUserData();
-  }, []);
+  //   getUserData();
+  // }, []);
 
   useEffect(() => {
     async function getUserTags() {
@@ -38,6 +38,8 @@ const MatchView = () => {
         credentials: "include",
         Authorization: `Bearer ${token}`,
       });
+      console.log(token);
+      console.log(response);
       let data = await response.json();
 
       if (response.ok) {
@@ -48,7 +50,7 @@ const MatchView = () => {
     }
 
     getUserTags();
-  }, [userData]);
+  }, [userData, token]);
 
   async function handleSubmit(event) {
     event.preventDefault();
