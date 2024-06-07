@@ -8,6 +8,8 @@ I also want to learn how to implement the messaging feature and the peer request
 
 Thanks for your genuine appreciation of my coding skills and personality. Considering I do need a bit more real-world business awareness, I plan to find my first retail job somewhere first. :)
 
+It's the first time I've felt so confident showing what I know. Yes, the biggest benefit of doing many projects is that I could finally appreciate how smart and sharp those technical questions were, so that you wouldn't feel you were wasting your time interviewing me. :P
+
 -------
 
 ThriveTogether is a comprehensive, full-stack mental health peer support application, meticulously developed by our team from inception to implementation using React, Redux Toolkit, FastAPI, OAuth2, JWT, PostgreSQL, unit testing, and CI/CD. 
