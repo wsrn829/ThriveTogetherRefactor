@@ -2,7 +2,7 @@
 
 -------
 
-The main purpose of this refactor is to replace the backend with Django and add my custom authentication. 
+The main purpose of this refactor is to replace the backend with Django and add my custom authentication. (I feel safe only when I use Django; with Django, I can debug literally everything.)
 
 I also want to learn how to implement the messaging feature and the peer request feature. I already know how to implement posting, liking, commenting, replying, and following/followers, though some of these need more practice.
 
